@@ -9,6 +9,14 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "exclude": [
+      "node_modules",
+      "dist"
+    ],
+    "lib": [
+      "dom",
+      "es6"
+    ]
   }
 }
