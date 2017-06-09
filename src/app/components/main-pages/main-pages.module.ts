@@ -6,6 +6,7 @@ import { LOG_LOGGER_PROVIDERS } from 'angular2-logger/core';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { ContactComponent } from './contact.component';
+import { AddressComponent } from './address.component';
 
 import { MainPagesRoutingModule } from './main-pages-routing.module';
 
@@ -18,7 +19,8 @@ import { MainPagesRoutingModule } from './main-pages-routing.module';
   declarations: [
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    AddressComponent
   ],
   bootstrap: [HomeComponent],
   providers: [LOG_LOGGER_PROVIDERS]
