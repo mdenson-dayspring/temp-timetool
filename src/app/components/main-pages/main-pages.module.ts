@@ -8,6 +8,8 @@ import { AboutComponent } from './about.component';
 import { ContactComponent } from './contact.component';
 import { AddressComponent } from './address.component';
 
+import { CounterInputComponent } from './counter-input.component';
+
 import { MainPagesRoutingModule } from './main-pages-routing.module';
 
 @NgModule({
@@ -20,7 +22,8 @@ import { MainPagesRoutingModule } from './main-pages-routing.module';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    AddressComponent
+    AddressComponent,
+    CounterInputComponent
   ],
   bootstrap: [HomeComponent],
   providers: [LOG_LOGGER_PROVIDERS]

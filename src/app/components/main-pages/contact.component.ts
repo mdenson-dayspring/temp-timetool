@@ -23,6 +23,7 @@ export class ContactComponent implements OnInit {
     ngOnInit() {
         this.myForm = this._fb.group({
             name: ['', [Validators.required, Validators.minLength(5)]],
+            counter: 2,
             addresses: this._fb.array([
                 this.initAddress()
             ])
