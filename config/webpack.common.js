@@ -35,8 +35,8 @@ module.exports = {
           helpers.root('src', 'app')
         ],
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader', 
-          loader: [
+          fallback: 'style-loader', 
+          use: [
             {
               loader: 'css-loader',
               options: {sourceMap: true }
@@ -51,8 +51,8 @@ module.exports = {
           helpers.root('src', 'app')
         ],
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader', 
-          loader: [
+          fallback: 'style-loader', 
+          use: [
             {
               loader: 'css-loader',
               options: {sourceMap: true }
@@ -95,6 +95,14 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       './src',
       {} // a map of your routes 
+    ),
+
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      helpers.root('src'), // location of your src
+      {
+        // your Angular Async Route paths relative to this root directory
+      }
     )
   ]
 };

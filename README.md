@@ -33,13 +33,12 @@ to address the vulnerability.
 
 | Framework/ Library | Version  | License
 | ------------------ | -------- | -------
-| Angular            | 2.4.x    | MIT
+| Angular            | 4.2.x    | MIT
 | Bootstrap          | 3.3.x    | MIT
 | ngrx/store         | 2.2.x    | MIT
 | Jasmine            | 2.4.x    | MIT
 | Karma              | 1.4.x    | MIT
 | PhantomJS          | 2.1.x    | Apache 2.0
-| RxJs               | 5.1.x    | Apache 2.0
-| TsLint             | 4.4.x    | Apache 2.0
-| TypeScript         | 2.1.x    | Apache 2.0
+| RxJs               | 5.4.x    | Apache 2.0
+| TypeScript         | 2.4.x    | Apache 2.0
 | Webpack            | 2.2.x    | MIT
