@@ -34,7 +34,7 @@
     "angular2-logger": "~0.6.0",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.2.0",
-    "bootstrap-sass": "^3.3.0",
+    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.0",
     "css-loader": "~0.28.0",
     "extract-text-webpack-plugin": "^2.0.0-beta",

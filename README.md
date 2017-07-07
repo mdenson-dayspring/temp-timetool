@@ -34,7 +34,7 @@ to address the vulnerability.
 | Framework/ Library | Version  | License
 | ------------------ | -------- | -------
 | Angular            | 4.2.x    | MIT
-| Bootstrap          | 3.3.x    | MIT
+| Bootstrap          | 4.0.x    | MIT
 | ngrx/store         | 2.2.x    | MIT
 | Jasmine            | 2.4.x    | MIT
 | Karma              | 1.4.x    | MIT

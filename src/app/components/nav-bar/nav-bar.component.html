@@ -1,14 +1,10 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" (click)="go('home')">Starter App</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li [ngClass]="{'active': active.home}"><a (click)="go('home')">Home</a></li>
-        <li [ngClass]="{'active': active.about}"><a (click)="go('about')">About</a></li>
-        <li [ngClass]="{'active': active.contact}"><a (click)="go('contact')">Contact</a></li>
-      </ul>
-    </div>
-  </div>
+<nav class="header">
+  <nav class="navbar flex-row justify-content-between">
+    <a class="navbar-brand" href="#">Starter App</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.home}" (click)="go('home')">Home</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.about}" (click)="go('about')">About</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.contact}" (click)="go('contact')">Contact</a></li>
+    </ul>
+  </nav>
 </nav>
