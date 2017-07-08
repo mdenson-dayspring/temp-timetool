@@ -1,0 +1,3 @@
+<td>{{ _content.name }}</td>
+<td class='hours'>{{ _content.hours }}</td>
+<td class='diff' [class.low]="_content.diffSign<0" [class.high]="_content.diffSign>0">{{ _content.diff }}</td>

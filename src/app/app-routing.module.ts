@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { NowPage } from './pages/now/now.page';
+import { EodPage } from './pages/eod/eod.page';
+import { SettingsPage } from './pages/settings/settings.page';
+
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'about', redirectTo: 'about', pathMatch: 'full' },
-  { path: 'contact', redirectTo: 'contact', pathMatch: 'full' }
+  { path: 'now', component: NowPage },
+  { path: 'eod', component: EodPage },
+  { path: 'settings', component: SettingsPage },
+  { path: '', redirectTo: 'now', pathMatch: 'full' }
 ];
 
 @NgModule({

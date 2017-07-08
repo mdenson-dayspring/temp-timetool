@@ -1,0 +1,55 @@
+<div class="settings">
+  <form #f="ngForm" [formGroup]="settingsForm">
+    <div activeIds="1">
+      <div id="1">
+        <div>
+          <h4 class="accordion-header">Today</h4>
+        </div>
+        <div>
+          <div class="form-group form-group-xs row" [class.has-danger]="settingsForm.controls.arrive.errors">
+            <label class="col-form-label col-form-label-sm col-xs-5" for="idArrive">I arrived at :</label>
+            <div class="col-xs-4">
+              <input class="form-control form-control-sm" type="text" id="idArrive" [formControl]="settingsForm.controls.arrive" required>
+            </div>
+          </div>
+          <div class="form-group form-group-xs row" [class.has-danger]="settingsForm.controls.lunch.errors">
+            <label class="col-form-label col-form-label-sm col-xs-5" for="idLunch">Lunch will take:</label>
+            <div class="col-xs-4">
+              <input class="form-control form-control-sm" type="text" id="idLunch" [formControl]="settingsForm.controls.lunch" required>
+            </div>
+          </div>
+          <div class="form-group form-group-xs row" [class.has-danger]="settingsForm.controls.leave.errors">
+            <label class="col-form-label col-form-label-sm col-xs-5" for="idLeave">I'll leave at:</label>
+            <div class="col-xs-4">
+              <input class="form-control form-control-sm" type="text" id="idLeave" [formControl]="settingsForm.controls.leave" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="2">
+        <div>
+          <h4 class="accordion-header">Other Settings</h4>
+        </div>
+
+        <div>
+          <div class="form-group form-group-xs row">
+            <label class="col-form-label col-form-label-sm col-xs-5" for="idStaff">Staff :</label>
+            <div class="col-xs-6">
+              <input class="form-control form-control-sm" type="text" id="idStaff" [formControl]="settingsForm.controls.staff" required>
+            </div>
+          </div>
+
+          <h6>Goals</h6>
+
+          <div *ngFor="let goal of settingsForm.goals; let i = index" class="form-group form-group-xs row" [class.has-danger]="settingsForm.controls[dayLabels[i]].errors">
+            <label class="col-form-label col-form-label-sm col-xs-5">{{ dayLabels[i] }}:</label>
+            <div class="col-xs-4">
+              <input class="form-control form-control-sm" type="text" [formControl]="settingsForm.controls[dayLabels[i]]" placeholder="h:mm">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,21 +1,41 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Logger } from 'angular2-logger/core';
+import { Observable } from 'rxjs/Observable';
+
+import * as fromRoot from '../store';
+import * as contextActions from '../store/context/context.actions';
+
+import { DayOfWeek, Context, HM } from '../models';
+
 import '../../sass/styles.scss';
 
 @Component({
-  selector: 'my-app',
+  selector: 'timetool',
   template: require('./app.component.html')
 })
 export class AppComponent {
+  now: HM;
 
-  constructor(private $log: Logger) { }
+  constructor(
+    private store: Store<fromRoot.State>,
+    private $log: Logger) {
+    this.now = HM.Now();
+    store.dispatch(new contextActions.LoadPageAction(this.now));
 
-  resetScores() {
-    this.$log.info('reset');
-    return false;
+    Observable
+      .interval(1000)
+      .map(() => {
+        return HM.Now();
+      })
+      .filter((value) => {
+        return (!this.now || !this.now.equals(value));
+      })
+      .subscribe((newTime) => {
+        this.now = newTime;
+        store.dispatch(new contextActions.TickAction(this.now));
+      });
+
   }
-  addScores(text: String) {
-    this.$log.info(text);
-    return false;
-  }
+
 }

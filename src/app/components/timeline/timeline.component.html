@@ -1,0 +1,26 @@
+<div class="timeline" *ngIf="today">
+  <div class="d-flex justify-content-between">
+    <div style="padding-left: 0px;">
+      <p class="text-success">{{ today.arrive.toString() }}</p>
+    </div>
+    <div style="text-align: center;">
+      <p class="text-warning">{{ today.lunch.toString() }}</p>
+    </div>
+    <div style="text-align: right; padding-right: 0px;">
+      <p class="text-success">{{ today.leave.toString() }}</p>
+    </div>
+  </div>
+  <div>
+    <div class="progress" title="Time left today: {{ timeLeft }}">
+      <div class="progress-bar bg-success" [style.width]="am" title="Time worked so far: {{ timeWorked }}">
+        <span class="sr-only">Time worked so far: {{ timeWorked }}</span>
+      </div>
+      <div class="progress-bar bg-warning progress-bar-striped" [style.width]="lunch" title="Time today (inc. lunch): {{ timeTotal }}">
+        <span class="sr-only">Time today (inc. lunch): {{ timeTotal }}</span>
+      </div>
+      <div class="progress-bar bg-success" [style.width]="pm" title="Time worked so far: {{ timeWorked }}">
+        <span class="sr-only"> title="Time worked so far: {{ timeWorked }}"</span>
+      </div>
+    </div>
+  </div>
+</div>

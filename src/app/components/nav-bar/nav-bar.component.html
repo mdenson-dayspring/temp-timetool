@@ -1,10 +1,10 @@
 <nav class="header">
   <nav class="navbar flex-row justify-content-between">
-    <a class="navbar-brand" href="#">Starter App</a>
+    <a class="navbar-brand" href="#">{{ time }}</a>
     <ul class="nav nav-pills">
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.home}" (click)="go('home')">Home</a></li>
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.about}" (click)="go('about')">About</a></li>
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.contact}" (click)="go('contact')">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.now}" (click)="go('now')">Now</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.end}" (click)="go('end')">End</a></li>
+      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.settings}" (click)="go('settings')">Settings</a></li>
     </ul>
   </nav>
 </nav>

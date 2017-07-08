@@ -1,0 +1,12 @@
+.hours {
+    width: 55px;
+    text-align: right;
+    padding-right: 13px;
+}
+.diff {
+    width: 55px;
+    text-align: right;
+}
+tr.active {
+    font-weight: bold;
+}

@@ -3,9 +3,9 @@
   "version": "4.2.0",
   "description": "Angular 4.x starter application.",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --port 3000",
+    "start": "webpack-dev-server --inline --progress --port 3000 --host 0.0.0.0",
     "test": "karma start",
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "tslint --type-check --project . 'src/**/*.ts'",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
   "licenses": [
@@ -48,6 +48,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.0",
     "ngrx-store-freeze": "^0.1.6",
+    "ngrx-store-localstorage": "^0.1.5",
     "node-sass": "^4.5.0",
     "null-loader": "^0.1.1",
     "phantomjs-prebuilt": "^2.1.0",

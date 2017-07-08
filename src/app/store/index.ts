@@ -6,28 +6,40 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
-import * as fromMainPage from './main-page/main-page.reducer';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+import * as fromContext from './context/context.reducer';
 
 export interface State {
-    mainPage: fromMainPage.State;
-    router: fromRouter.RouterState;
+  context: fromContext.State;
+  router: fromRouter.RouterState;
 }
 
 const reducers = {
-    mainPage: fromMainPage.reducer,
-    router: fromRouter.routerReducer
+  context: fromContext.reducer,
+  router: fromRouter.routerReducer
 };
 
-const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
+const localStore = localStorageSync({ keys: ['context'], rehydrate: true });
+
+const developmentReducer: ActionReducer<State> = compose(
+  localStore,
+  storeFreeze,
+  combineReducers
+)(reducers);
+const productionReducer: ActionReducer<State> = compose(
+  localStore,
+  combineReducers
+)(reducers);
 
 export function reducer(state: any, action: any) {
-    if (process.env.ENV === 'production') {
-        return productionReducer(state, action);
-    } else {
-        return developmentReducer(state, action);
-    }
+  if (process.env.ENV === 'production') {
+    return productionReducer(state, action);
+  } else {
+    return developmentReducer(state, action);
+  }
 }
 
 export const getRouterPath = (state: State) => state.router.path;
-export const getMainPageState = (state: State) => state.mainPage;
+export const getContextState = (state: State) => state.context;
+export const getContext = createSelector(getContextState, fromContext.getContext);

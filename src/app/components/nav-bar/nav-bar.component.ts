@@ -4,9 +4,8 @@ import { Store } from '@ngrx/store';
 import { go } from '@ngrx/router-store';
 import { Observable } from 'rxjs/Observable';
 
+import { HM } from '../../models';
 import * as fromRoot from '../../store';
-import * as fromMainPage from '../../store/main-page/main-page.reducer';
-import * as page from '../../store/main-page/main-page.actions';
 
 @Component({
   selector: 'nav-bar',
@@ -14,21 +13,19 @@ import * as page from '../../store/main-page/main-page.actions';
   styles: [require('./nav-bar.component.scss')]
 })
 export class NavBarComponent {
-  @Input() readOnly: boolean = false;
-  pageState$: Observable<fromMainPage.State>;
-
+  @Input() time: HM;
   private path: string;
   private urlDefinitions: {key: string, url: string}[] = [
-    { key: 'home', url: '/home' },
-    { key: 'about', url: '/about' },
-    { key: 'contact', url: '/contact' }
+    { key: 'now', url: '/now' },
+    { key: 'end', url: '/eod' },
+    { key: 'settings', url: '/settings' }
   ];
   private urls: any;
   private active: any;
 
-  constructor(private store: Store<fromRoot.State>, private $log: Logger) {
-    this.pageState$ = store.select(fromRoot.getMainPageState);
-
+  constructor(
+    private store: Store<fromRoot.State>,
+    private $log: Logger) {
     this.urls = {};
     this.active = {};
     this.urlDefinitions.forEach(value => {
@@ -37,15 +34,10 @@ export class NavBarComponent {
     });
 
     store.select(fromRoot.getRouterPath).subscribe((path) => {
-      console.log(path);
       this.path = path;
       this.urlDefinitions.forEach(value => {
         this.active[value.key] = (path === value.url);
       });
-    });
-
-    this.pageState$.subscribe((state) => {
-      this.readOnly = (state.readOnly !== undefined) ? state.readOnly : this.readOnly;
     });
   }
 

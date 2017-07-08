@@ -1,0 +1,8 @@
+<table class='table table-sm table-striped'>
+    <tr>
+        <th>Day</th>
+        <th class="hours">Hours</th>
+        <th class="diff">Diff</th>
+    </tr>
+    <tr *ngFor="let line of _content" [weektable-row]='line' [class.font-weight-bold]="line.totals" [class.bg-success]="line.today"></tr>
+</table>
