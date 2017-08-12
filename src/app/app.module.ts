@@ -8,6 +8,8 @@ import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
+import { InputTimeModule } from './components/input-time/input-time.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -26,6 +28,7 @@ import { reducer } from './store';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    InputTimeModule,
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension()

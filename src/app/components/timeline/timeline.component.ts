@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 import { Context, HM, Today } from '../../models';
 
@@ -16,11 +17,25 @@ export class TimelineComponent implements OnChanges {
   am: string;
   lunch: string;
   pm: string;
-  constructor() { }
+
+  private form: FormGroup;
+
+  constructor(private $fb: FormBuilder) {
+    this.form = this.$fb.group({
+      arrive: undefined,
+      lunch: undefined,
+      leave: undefined
+    });
+
+  }
 
   ngOnChanges() {
     if (this.today) {
       this._setup(this.now, this.today);
+
+      this.form.get('arrive').setValue(this.today.arrive);
+      this.form.get('lunch').setValue(this.today.lunch);
+      this.form.get('leave').setValue(this.today.leave);
     }
   }
 

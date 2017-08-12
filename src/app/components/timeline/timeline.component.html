@@ -1,15 +1,17 @@
 <div class="timeline" *ngIf="today">
-  <div class="d-flex justify-content-between">
-    <div style="padding-left: 0px;">
-      <p class="text-success">{{ today.arrive.toString() }}</p>
+  <form [formGroup]="form" novalidate>
+    <div class="d-flex justify-content-between">
+      <div class="px-0 text-success">
+        <input-time name="arrive" formControlName="arrive"></input-time>
+      </div>
+      <div class="text-warning">
+        <input-time formControlName="lunch"></input-time>
+      </div>
+      <div class="px-0 text-success">
+        <input-time formControlName="leave"></input-time>
+      </div>
     </div>
-    <div style="text-align: center;">
-      <p class="text-warning">{{ today.lunch.toString() }}</p>
-    </div>
-    <div style="text-align: right; padding-right: 0px;">
-      <p class="text-success">{{ today.leave.toString() }}</p>
-    </div>
-  </div>
+  </form>
   <div>
     <div class="progress" title="Time left today: {{ timeLeft }}">
       <div class="progress-bar bg-success" [style.width]="am" title="Time worked so far: {{ timeWorked }}">
