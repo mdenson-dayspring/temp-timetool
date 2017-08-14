@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { InputTimeComponent, TimePipe } from './input-time.component';
+import { InputFocusDirective } from './input-focus.directive';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import { InputTimeComponent, TimePipe } from './input-time.component';
     ReactiveFormsModule
   ],
   declarations: [
+    InputFocusDirective,
     TimePipe,
     InputTimeComponent
   ],

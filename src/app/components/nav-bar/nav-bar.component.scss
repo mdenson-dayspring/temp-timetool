@@ -1,3 +1,14 @@
 a {
   cursor: pointer
 }
+
+.nav-pills {
+  color: #004a00;
+}
+.nav-pills .nav-link.active, .show > .nav-pills .nav-link {
+  background-color: green;
+  color: white;
+}
+.nav-pills .nav-link {
+    border-radius: 0;
+}

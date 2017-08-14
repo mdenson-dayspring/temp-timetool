@@ -4,14 +4,28 @@ p {
 
 .timeline {
   width: 100%;
-  
+  .bg-onclock {
+    background-color: #28a745;
+  }
+  .bg-lunch {
+    background-color: lightgray;
+  }
+  .text-onclock {
+    color: #28a745;
+  }
+  .text-lunch {
+    color: #020202;
+  }
+  .text-over {
+    color: red;
+  }
+
   .progress {
     background-color: rgba(0,0,0,.05);
     border: 1px solid #c0c0c0;
     border-radius: 4px;
     height: 20px;
-    margin-bottom: 4px;
-    
+
     .progress-bar {
         float: left;
         height: 100%;

@@ -37,16 +37,11 @@ export class HM {
     }
 
     toString(pos = '', neg = '-'): string {
-        let sign = Math.sign(this._minutes);
-        let hours = this.hours();
-        let minutes = this.min();
+        return this.signString(pos, neg) + this.format(false);
+    }
 
-        let s = (sign < 0) ? neg : pos;
-        if (this._minutes === 0) {
-            s = '';
-        }
-        let minstr = ('00' + minutes).substr(-2);
-        return s + hours + ':' + minstr;
+    inputFormat(): string {
+        return this.signString() + this.format(true);
     }
 
     add(add2: HM): HM {
@@ -55,6 +50,26 @@ export class HM {
 
     sub(sub2: HM): HM {
         return new HM(this._minutes - sub2._minutes);
+    }
+
+    private signString(pos = '', neg = '-') {
+        let sign = Math.sign(this._minutes);
+        let s = (sign < 0) ? neg : pos;
+        if (this._minutes === 0) {
+            s = '';
+        }
+        return s;
+    }
+    private format(zeros: boolean = false) {
+        let hours = this.hours;
+        let minutes = this.min;
+
+        let hrstr: string = '' + hours;
+        if (zeros) {
+          hrstr = ('00' + hours).substr(-2);
+        }
+        let minstr = ('00' + minutes).substr(-2);
+        return hrstr + ':' + minstr;
     }
 
     private parse(value: string) {
@@ -77,11 +92,11 @@ export class HM {
         }
     }
 
-    private hours(): number {
+    private get hours(): number {
         return Math.floor(Math.abs(this._minutes) / 60);
     }
 
-    private min(): number {
+    private get min(): number {
         return Math.abs(this._minutes) % 60;
     }
 

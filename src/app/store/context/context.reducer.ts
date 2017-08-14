@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { Context, Today, HM } from '../../models';
+import { Context, Today, HM, TodayTimes } from '../../models';
 import * as contextActions from './context.actions';
 
 export interface State {
@@ -18,12 +18,26 @@ export function reducer(state = initialState, action: contextActions.Actions): S
       });
     case contextActions.ACTION.TICK:
       return Object.assign({}, state, {
-        context: updateNow(state.context, (<contextActions.LoadPageAction>action).payload)
+        context: updateNow(state.context, (<contextActions.TickAction>action).payload)
+      });
+
+    case contextActions.ACTION.UPDATE_EXPECTED:
+      return Object.assign({}, state, {
+        context: updateExpected(
+          state.context,
+          (<contextActions.UpdateExpectedAction>action).payload
+        )
       });
 
     default:
       return state;
   }
+}
+
+function updateExpected(context: Context, newTimes: TodayTimes): Context {
+  const nowHM = context.now.leave;
+  context = Object.assign(new Context(), context, {expected : newTimes});
+  return updateNow(context, nowHM);
 }
 
 function updateNow(context: Context, nowHM: HM): Context {

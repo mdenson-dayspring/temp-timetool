@@ -32,7 +32,12 @@ export class TimePipe implements PipeTransform {
   selector: 'input-time',
   template: `
 <span *ngIf="!editMode" (click)="startEdit()">{{ value | time }}</span>
-<input *ngIf="editMode" value="{{ value.toString() }}" style="width: 3rem; text-align: right;"/>
+<input focus *ngIf="editMode"
+  type="time"
+  name="{{ name }}"
+  value="{{ value.inputFormat() }}"
+  (keydown.enter)="save($event)"
+  (blur)="save($event)"/>
 `,
   providers: [
     {
@@ -50,6 +55,14 @@ export class InputTimeComponent implements OnChanges, ControlValueAccessor {
 
   constructor(private $log: Logger) { }
 
+  save(val: any) {
+    const newVal: HM = new HM(val.target.value);
+    if (!newVal.equals(this.value)) {
+      this.value = newVal;
+      this.propagateChange(newVal);
+    }
+    this.editMode = false;
+  }
   startEdit() {
     this.editMode = true;
   }

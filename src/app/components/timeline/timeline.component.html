@@ -1,28 +1,36 @@
 <div class="timeline" *ngIf="today">
   <form [formGroup]="form" novalidate>
     <div class="d-flex justify-content-between">
-      <div class="px-0 text-success">
-        <input-time name="arrive" formControlName="arrive"></input-time>
+      <div class="px-0 text-onclock">
+        <input-time name="arriveTime" formControlName="arrive"></input-time>
       </div>
-      <div class="text-warning">
-        <input-time formControlName="lunch"></input-time>
+      <div class="text-lunch">
+        <input-time name="lunchTime" formControlName="lunch"></input-time>
       </div>
-      <div class="px-0 text-success">
-        <input-time formControlName="leave"></input-time>
+      <div class="px-0 text-onclock">
+        <input-time name="leaveTime" formControlName="leave"></input-time>
       </div>
     </div>
   </form>
   <div>
     <div class="progress" title="Time left today: {{ timeLeft }}">
-      <div class="progress-bar bg-success" [style.width]="am" title="Time worked so far: {{ timeWorked }}">
+      <div class="progress-bar bg-onclock" [style.width]="am" title="Time worked so far: {{ timeWorked }}">
         <span class="sr-only">Time worked so far: {{ timeWorked }}</span>
       </div>
-      <div class="progress-bar bg-warning progress-bar-striped" [style.width]="lunch" title="Time today (inc. lunch): {{ timeTotal }}">
+      <div class="progress-bar bg-lunch progress-bar-striped" [style.width]="lunch" title="Time today (inc. lunch): {{ timeTotal }}">
         <span class="sr-only">Time today (inc. lunch): {{ timeTotal }}</span>
       </div>
-      <div class="progress-bar bg-success" [style.width]="pm" title="Time worked so far: {{ timeWorked }}">
+      <div class="progress-bar bg-onclock" [style.width]="pm" title="Time worked so far: {{ timeWorked }}">
         <span class="sr-only"> title="Time worked so far: {{ timeWorked }}"</span>
       </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mb-1">
+    <div class="px-0 text-onclock">
+      <p>{{ timeWorked }}<span *ngIf="timeTotal !== timeWorked"> / {{ timeTotal }}</span></p>
+    </div>
+    <div class="px-0" [ngClass]="{'text-lunch': today.timeLeft().minutes >= 0, 'text-over': today.timeLeft().minutes < 0 }">
+      <p>{{ timeLeft }}</p>
     </div>
   </div>
 </div>
