@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { go } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
 import { Context, DayInfo, HM } from '../../models';
 import * as fromRoot from '../../store';
+import * as contextActions from '../../store/context/context.actions';
 
 @Component({
   template: require('./now.page.html'),
@@ -27,6 +29,16 @@ export class NowPage implements OnInit {
       });
 
   }
+
+  hideTimelineHelp() {
+    this.store.dispatch(new contextActions.HideTimelineHelpAction());
+  }
+  
+  gotoSettings() {
+    console.debug('gotoSettings');
+    this.store.dispatch(go('/settings'));
+  }
+
   setHours(context: Context) {
     if (context.today) {
       this.eod = context.today.hoursLessLunch;

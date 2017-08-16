@@ -29,6 +29,8 @@ export class TimesheetEffects {
 
   constructor(private actions$: Actions,
               private $svc: TimesheetService,
-              private $log: Logger) { }
+              private $log: Logger) {
+
+  }
 
 }

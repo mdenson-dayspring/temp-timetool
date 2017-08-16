@@ -6,7 +6,8 @@ import { HM, TodayTimes } from '../../models';
 export const ACTION = {
   LOAD_PAGE:  type('[Context] Load Page'),
   TICK:  type('[Context] Tick'),
-  UPDATE_EXPECTED:  type('[Context] Update Expected Times')
+  UPDATE_EXPECTED:  type('[Context] Update Expected Times'),
+  HIDE_TIMELINE_HELP:  type('[Context] Hide Timeline Help')
 };
 
 export class LoadPageAction implements Action {
@@ -24,8 +25,12 @@ export class UpdateExpectedAction implements Action {
   constructor(public payload: TodayTimes) { }
 }
 
+export class HideTimelineHelpAction implements Action {
+  type = ACTION.HIDE_TIMELINE_HELP;
+}
 
 export type Actions
   = LoadPageAction
   | TickAction
-  | UpdateExpectedAction;
+  | UpdateExpectedAction
+  | HideTimelineHelpAction;

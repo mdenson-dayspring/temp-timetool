@@ -24,6 +24,8 @@ export class Context {
   expected: TodayTimes;
   goals: string[];
 
+  hideTimelineHelp: boolean = false;
+
   constructor() {
     this.staff = '';
     this.expected = new TodayTimes();

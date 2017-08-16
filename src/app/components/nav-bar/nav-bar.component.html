@@ -1,8 +1,12 @@
 <nav class="header bg-primary">
-  <nav class="navbar px-2 py-0 flex-row justify-content-between">
+  <nav class="navbar pl-2 pr-0 py-0 flex-row justify-content-between">
     <a class="navbar-brand" href="#">{{ time }}</a>
     <ul class="nav nav-pills">
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.settings}" (click)="go('settings')">Settings</a></li>
+      <li class="nav-item">
+        <a class="nav-link px-1" [ngClass]="{'active': active.settings}" (click)="go('settings')" style="color: aquamarine">
+          <img src="/public/images/icon-gear.svg" width="30" height="30" alt="">
+        </a>
+      </li>
     </ul>
   </nav>
 </nav>

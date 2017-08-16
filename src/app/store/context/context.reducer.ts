@@ -29,6 +29,15 @@ export function reducer(state = initialState, action: contextActions.Actions): S
         )
       });
 
+    case contextActions.ACTION.HIDE_TIMELINE_HELP:
+      return Object.assign({}, state, {
+        context: Object.assign(
+          new Context(),
+          state.context,
+          {hideTimelineHelp: true }
+        )
+      });
+
     default:
       return state;
   }
