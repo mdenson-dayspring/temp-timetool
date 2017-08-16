@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Logger } from 'angular2-logger/core';
+
 import { DayInfo, HM } from '../../models';
 
 @Component({
@@ -7,7 +9,9 @@ import { DayInfo, HM } from '../../models';
     selector: '[weektable-row]'
 })
 export class WeekTableRowComponent {
-    @Input('weektable-row') _content: DayInfo;
+    @Input('weektable-row') content: DayInfo;
 
-    constructor() { }
+    constructor(private $log: Logger) {
+      this.$log.debug('[WeekTableRowComponent] constructor');
+    }
 }

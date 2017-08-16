@@ -9,18 +9,21 @@ import { combineReducers } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
 import * as fromContext from './context/context.reducer';
+import * as fromTimesheet from './timesheet/timesheet.reducer';
 
 export interface State {
   context: fromContext.State;
   router: fromRouter.RouterState;
+  timesheet: fromTimesheet.State;
 }
 
 const reducers = {
   context: fromContext.reducer,
-  router: fromRouter.routerReducer
+  router: fromRouter.routerReducer,
+  timesheet: fromTimesheet.reducer
 };
 
-const localStore = localStorageSync({ keys: ['context'], rehydrate: true });
+const localStore = localStorageSync({ keys: ['context', 'timesheet'], rehydrate: true });
 
 const developmentReducer: ActionReducer<State> = compose(
   localStore,
@@ -43,3 +46,6 @@ export function reducer(state: any, action: any) {
 export const getRouterPath = (state: State) => state.router.path;
 export const getContextState = (state: State) => state.context;
 export const getContext = createSelector(getContextState, fromContext.getContext);
+
+export const getTimesheetState = (state: State) => state.timesheet;
+export const getWeek = createSelector(getTimesheetState, fromTimesheet.getWeek);

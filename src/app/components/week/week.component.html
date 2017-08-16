@@ -1,2 +1,7 @@
 <h3>Week of {{ todayDate }}</h3>
-<weektable [dayOfWeek]=todayDoW [content]=week></weektable>
+<weektable
+  *ngIf="week"
+  [dayOfWeek]="todayDoW"
+  [content]="week"
+  (clicked)="onClick()">
+</weektable>

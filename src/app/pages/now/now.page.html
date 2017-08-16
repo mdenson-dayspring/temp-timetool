@@ -1,3 +1,9 @@
 <div class="px-2">
   <timeline [now]="(context$ | async)?.now" [today]="(context$ | async)?.today"></timeline>
+  <week-summary
+    [actuals]="weekData$ | async"
+    [goals]="(context$ | async)?.goals"
+    [nowHours]="now"
+    [todayHours]="eod">
+  </week-summary>
 </div>

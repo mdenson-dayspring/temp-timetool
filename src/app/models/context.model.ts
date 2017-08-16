@@ -29,10 +29,10 @@ export class Context {
     this.expected = new TodayTimes();
     this.goals = [
       '',
+      '8:00',
       '7:48',
       '7:48',
-      '7:48',
-      '7:48',
+      '7:36',
       '7:48',
       ''
     ];

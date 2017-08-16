@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from '../store';
 import * as contextActions from '../store/context/context.actions';
+import * as timesheetActions from '../store/timesheet/timesheet.actions';
 
 import { DayOfWeek, Context, HM } from '../models';
 
@@ -22,6 +23,9 @@ export class AppComponent {
     private $log: Logger) {
     this.now = HM.Now();
     store.dispatch(new contextActions.LoadPageAction(this.now));
+
+    store.dispatch(new timesheetActions.ResetWeekAction(new Date()));
+    store.dispatch(new timesheetActions.FetchWeekAction(new Date()));
 
     Observable
       .interval(1000)

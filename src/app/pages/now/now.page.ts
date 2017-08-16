@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
-import { Context, DayInfo } from '../../models';
+import { Context, DayInfo, HM } from '../../models';
 import * as fromRoot from '../../store';
 
 @Component({
@@ -11,10 +11,13 @@ import * as fromRoot from '../../store';
 })
 export class NowPage implements OnInit {
   context$: Observable<Context>;
-  hours: string;
+  weekData$: Observable<DayInfo[]>;
+  eod: HM;
+  now: HM;
 
   constructor(private store: Store<fromRoot.State>) {
     this.context$ = this.store.select(fromRoot.getContext);
+    this.weekData$ = this.store.select(fromRoot.getWeek);
   }
 
   ngOnInit() {
@@ -25,10 +28,13 @@ export class NowPage implements OnInit {
 
   }
   setHours(context: Context) {
+    if (context.today) {
+      this.eod = context.today.hoursLessLunch;
+    }
     if (context.now) {
-      this.hours = context.now.hoursLessLunch.toString();
+      this.now = context.now.hoursLessLunch;
     } else {
-      this.hours = '0:00';
+      this.now = new HM('0:00');
     }
   }
 }

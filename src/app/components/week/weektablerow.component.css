@@ -7,9 +7,9 @@
 }
 .low {
     padding-left: 13px;
-    background: url(assets/img/arrow_dr.png) no-repeat left;
+    background: url(public/images/arrow_dr.png) no-repeat left;
 }
 .high {
     padding-left: 13px;
-    background: url(assets/img/arrow_ug.png) no-repeat left;
+    background: url(public/images/arrow_ug.png) no-repeat left;
 }

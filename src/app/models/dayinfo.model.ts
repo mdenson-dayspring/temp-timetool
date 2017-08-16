@@ -1,15 +1,26 @@
 /**
  * Created by mdenson on 12/11/2015.
  */
-import { HM } from './index';
+import { HM, DayOfWeek } from './index';
 
 export class DayInfo {
+  dayOfWeek: DayOfWeek;
   name: string;
   private _goal: HM;
   private _actual: HM;
 
-  constructor(name: string, goal?: (string | HM), actual?: (string | HM)) {
-    this.name = name;
+  constructor(dayOfWeek?: DayOfWeek, goal?: (string | HM), actual?: (string | HM)) {
+    this.dayOfWeek = dayOfWeek;
+    if (dayOfWeek) {
+      this.name =
+        ['Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'][dayOfWeek];
+    }
     if (goal) {
       this.setGoal(goal);
     }
@@ -29,9 +40,10 @@ export class DayInfo {
       this._actual = a;
     }
   }
-  getActual(): HM {
+  get actual(): HM {
     return this._actual;
   }
+
   setGoal(g: (string | HM)) {
     if (typeof g === 'string') {
       this._goal = new HM(g);
@@ -39,7 +51,7 @@ export class DayInfo {
       this._goal = g;
     }
   }
-  getGoal(): HM {
+  get goal(): HM {
     return this._goal;
   }
 

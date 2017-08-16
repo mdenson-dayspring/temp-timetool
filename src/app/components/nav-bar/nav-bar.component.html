@@ -1,9 +1,7 @@
-<nav class="header" style="background-color: #a7c272;">
+<nav class="header bg-primary">
   <nav class="navbar px-2 py-0 flex-row justify-content-between">
     <a class="navbar-brand" href="#">{{ time }}</a>
     <ul class="nav nav-pills">
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.now}" (click)="go('now')">Now</a></li>
-      <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.end}" (click)="go('end')">End</a></li>
       <li class="nav-item"><a class="nav-link" [ngClass]="{'active': active.settings}" (click)="go('settings')">Settings</a></li>
     </ul>
   </nav>

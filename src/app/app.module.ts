@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LOG_LOGGER_PROVIDERS } from 'angular2-logger/core';
@@ -17,21 +18,23 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { WeekComponent, WeekTableComponent, WeekTableRowComponent } from './components/week';
 
 import { NowPage } from './pages/now/now.page';
-import { EodPage } from './pages/eod/eod.page';
 import { SettingsPage } from './pages/settings/settings.page';
 
 import { TimesheetService } from './services';
 import { reducer } from './store';
+import { TimesheetEffects } from './store/timesheet/timesheet.effects';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpModule,
     InputTimeModule,
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
-    StoreDevtoolsModule.instrumentOnlyWithExtension()
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(TimesheetEffects)
   ],
   declarations: [
     AppComponent,
@@ -43,7 +46,6 @@ import { reducer } from './store';
     WeekTableRowComponent,
 
     NowPage,
-    EodPage,
     SettingsPage
   ],
   bootstrap: [AppComponent],

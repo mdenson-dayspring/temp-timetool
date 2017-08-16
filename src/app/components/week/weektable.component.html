@@ -4,5 +4,11 @@
         <th class="hours">Hours</th>
         <th class="diff">Diff</th>
     </tr>
-    <tr *ngFor="let line of _content" [weektable-row]='line' [class.font-weight-bold]="line.totals" [class.bg-success]="line.today"></tr>
+    <tr
+      *ngFor="let line of week;"
+      [weektable-row]='line'
+      [class.font-weight-bold]="line.totals"
+      [class.bg-primary]="line.today"
+      (click)="onClick(line.dayOfWeek)">
+    </tr>
 </table>

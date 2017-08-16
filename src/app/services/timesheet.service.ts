@@ -1,41 +1,44 @@
-import {Injectable} from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { Store } from '@ngrx/store';
+import { Logger } from 'angular2-logger/core';
+import { Observable, Subscriber } from 'rxjs';
 
-import { DayInfo } from '../models';
+import * as fromRoot from '../store';
+import { DayInfo, HM } from '../models';
+
+const BASE_URL = 'http://malachi/timesheetPHP/staff/staff_json.php';
 
 @Injectable()
 export class TimesheetService {
-    week$: Subject<DayInfo[]>;
-    private baseUrl: string;
-    private dataStore: {  // This is where we will store our data in memory
-        week: DayInfo[]
-    };
 
-    // Using Angular DI we use the HTTP service
-    constructor(private http: Http) {
-        this.baseUrl = 'http://malachi/timesheetPHP/staff/staff_json.php';
-        this.dataStore = { week: [] };
-        this.week$ = <Subject<DayInfo[]>>new BehaviorSubject( [] );
-    }
+  // Using Angular DI we use the HTTP service
+  constructor(private $http: Http,
+    private store: Store<fromRoot.State>,
+    private $log: Logger) {
+  }
 
-    loadTimeData(today: Date, staff: string) {
-        let todaystr = this._isoDate(today);
-        let url = this.baseUrl + '?staff=' + staff + '&today=' + todaystr;
-        this.http.get(url)
-            .map(response => response.json())
-            .subscribe(data => {
-                this.dataStore.week = data;
-                this.week$.next(this.dataStore.week);
-            }, error => console.log('Could not load week.'));
-    }
+  fetchTimeData(today: Date, staff: string): Observable<DayInfo[]> {
+    return Observable.create((subscriber: Subscriber<DayInfo[]>) => {
+      const todaystr = this._isoDate(today);
+      // const url = BASE_URL + '?staff=' + staff + '&today=' + todaystr;
+      const url = 'public/data/staff.json';
+      this.$http.get(url)
+        .map(response => response.json())
+        .subscribe(data => {
+          const dayList = data.map((day: {[key: string]: any}) => {
+            return new DayInfo(day.day_of_week, undefined, new HM(day.minutes));
+          });
+          subscriber.next(dayList);
+          subscriber.complete();
+        }, error => this.$log.error('Could not load week.'));
+    });
+  }
 
-    private _isoDate(d: Date) {
-        function pad(s: number): String {
-            return (s < 10) ? '0' + s : '' + s;
-        }
-        return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+  private _isoDate(d: Date) {
+    function pad(s: number): String {
+      return (s < 10) ? '0' + s : '' + s;
     }
+    return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+  }
 }

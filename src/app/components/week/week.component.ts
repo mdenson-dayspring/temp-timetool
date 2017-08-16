@@ -1,81 +1,98 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { Logger } from 'angular2-logger/core';
 
 import { DayOfWeek, Context, DayInfo, HM } from '../../models';
 import { TimesheetService } from '../../services';
 
 @Component({
-    template: require('./week.component.html'),
-    selector: 'week-summary'
+  template: require('./week.component.html'),
+  selector: 'week-summary'
 })
-export class WeekComponent implements OnInit {
-    todayDoW: number;
-    week: DayInfo[];
+export class WeekComponent implements OnChanges {
+  @Input() mode = 'eod';
+  @Input() nowHours: HM;
+  @Input() actuals: DayInfo[];
+  @Input() goals: HM[];
+  todayDoW: number;
+  week: DayInfo[];
 
-    private today: Date;
-    private _showNow: boolean = false;
-    private todayHoursHM: HM;
+  private allowModeSwitch = false;
+  private today: Date;
+  private _showNow: boolean = false;
+  private todayHoursHM: HM;
 
-    // private _appContext: Context;
+  @Input()
+  set todayHours(hours: HM) {
+    this.today = new Date();
+    this.todayDoW = this.today.getDay();
+    this.todayHoursHM = hours;
+  }
 
-    @Input()
-    set todayHours(hours: number) {
-        this.today = new Date();
-        this.todayDoW = this.today.getDay();
-        this.todayHoursHM = new HM(hours);
+  get todayHoursDisplay(): string {
+    return this.todayHoursHM.toString();
+  }
 
-        // let staff = this._appState.getContext().staff;
-
-        // this._timesheetService.loadTimeData(this.today, staff);
+  get todayDate(): string {
+    function pad(s: number) {
+      return (s < 10) ? '0' + s : s;
     }
+    let d = this.today;
+    return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join('/');
+  }
 
-    get todayHoursDisplay(): string {
-        return this.todayHoursHM.toString();
+  constructor(private $log: Logger) {
+    this.today = new Date();
+    this.todayDoW = this.today.getDay();
+  }
+
+  onClick() {
+    if (this.allowModeSwitch) {
+      this.mode = (this.mode === 'now' ? 'eod' : 'now');
+      this.$log.debug('Mode Change: mode changed to "' + this.mode + '"');
+      this.week[this.todayDoW] = this.prepToday(this.week[this.todayDoW]);
+
+      this.week = Object.assign([], this.week);
     }
+  }
 
-    get todayDate(): string {
-        function pad(s: number) {
-            return (s < 10) ? '0' + s : s;
-        }
-        let d = this.today;
-        return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join('/');
+  ngOnChanges() {
+    this.$log.debug('[week.component] ngOnChanges');
+    if (this.actuals && this.goals) {
+      this.fillHours(this.actuals, this.goals);
     }
+  }
 
+  private fillHours(weekActuals: DayInfo[], goals: HM[]) {
+    this.$log.debug('[week.component] fillHours');
+    let week: DayInfo[] = [
+      new DayInfo(DayOfWeek.SUN, goals[DayOfWeek.SUN]),
+      new DayInfo(DayOfWeek.MON, goals[DayOfWeek.MON]),
+      new DayInfo(DayOfWeek.TUE, goals[DayOfWeek.TUE]),
+      new DayInfo(DayOfWeek.WED, goals[DayOfWeek.WED]),
+      new DayInfo(DayOfWeek.THU, goals[DayOfWeek.THU]),
+      new DayInfo(DayOfWeek.FRI, goals[DayOfWeek.FRI]),
+      new DayInfo(DayOfWeek.SAT, goals[DayOfWeek.SAT])
+    ];
 
-    constructor(
-        // private _appState: AppState,
-        private _timesheetService: TimesheetService
-    ) {
-        this.today = new Date();
-        this.todayDoW = this.today.getDay();
+    weekActuals.forEach(actual => {
+      week[actual.dayOfWeek].setActual(new HM(actual.actual));
+    });
+
+    if (week[this.todayDoW].actual === undefined) {
+      this.allowModeSwitch = true;
+      this.prepToday(week[this.todayDoW]);
     }
+    this.week = week;
+  }
 
-    ngOnInit() {
-        this._timesheetService.week$.subscribe(updated => {
-            this.fillHours(updated);
-        });
-
+  private prepToday(day: DayInfo) {
+    if (this.mode === 'now') {
+      day.setActual(this.nowHours);
+      day.name = 'Hours right now';
+    } else {
+      day.setActual(this.todayHoursHM);
+      day.name = 'At end of Today';
     }
-
-    private fillHours(weekActuals: any[]) {
-        // let context = this._appState.getContext();
-        // let week: DayInfo[] = [
-        //     new DayInfo('Sunday', context.goals[DayOfWeek.SUN]),
-        //     new DayInfo('Monday', context.goals[DayOfWeek.MON]),
-        //     new DayInfo('Tuesday', context.goals[DayOfWeek.TUE]),
-        //     new DayInfo('Wednesday', context.goals[DayOfWeek.WED]),
-        //     new DayInfo('Thursday', context.goals[DayOfWeek.THU]),
-        //     new DayInfo('Friday', context.goals[DayOfWeek.FRI]),
-        //     new DayInfo('Saturday', context.goals[DayOfWeek.SAT])
-        // ];
-
-        // weekActuals.forEach(actual => {
-        //     week[actual.day_of_week].setActual(new HM(actual.minutes));
-        // });
-
-        // if (week[this.todayDoW].getActual() === undefined) {
-        //     week[this.todayDoW].setActual(this.todayHoursHM);
-        // }
-
-        // this.week = week;
-    }
+    return Object.assign(new DayInfo(), day);
+  }
 }
