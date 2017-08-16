@@ -29,8 +29,8 @@ export class TimesheetService {
       const todaystr = this._isoDate(today);
       this.$log.debug('[TimesheetService.fetchTimeData]', this.staff, todaystr);
       if (this.staff) {
-        // const url = BASE_URL + '?staff=' + this.staff + '&today=' + todaystr;
-        const url = 'public/data/staff.json';
+        const url = BASE_URL + '?staff=' + this.staff + '&today=' + todaystr;
+        // const url = 'public/data/staff.json';
         this.$http.get(url)
           .map(response => response.json())
           .subscribe(data => {

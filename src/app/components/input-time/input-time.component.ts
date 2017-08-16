@@ -33,7 +33,7 @@ export class TimePipe implements PipeTransform {
   template: `
 <span *ngIf="!editMode" (click)="startEdit()">{{ value | time }}</span>
 <input focus *ngIf="editMode"
-  type="time"
+  style="width: 4rem;"
   name="{{ name }}"
   value="{{ value.inputFormat() }}"
   (keydown.enter)="save($event)"
