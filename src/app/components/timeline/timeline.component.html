@@ -27,10 +27,10 @@
   </div>
   <div class="d-flex justify-content-between mb-1">
     <div class="px-0 text-onclock">
-      <p>{{ timeWorked }}<span *ngIf="timeTotal !== timeWorked"> / {{ timeTotal }}</span></p>
+      <p>Hours: {{ timeWorked }}<span class="text-lunch" *ngIf="timeTotal !== timeWorked"> ({{ timeTotal }} total)</span></p>
     </div>
     <div class="px-0" [ngClass]="{'text-lunch': today.timeLeft().minutes >= 0, 'text-over': today.timeLeft().minutes < 0 }">
-      <p>{{ timeLeft }}</p>
+      <p>Leave in: {{ timeLeft }}</p>
     </div>
   </div>
 </div>
