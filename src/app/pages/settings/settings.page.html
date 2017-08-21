@@ -1,29 +1,28 @@
-<div class="settings">
+<div class="settings container">
+  <h4>Settings</h4>
   <form [formGroup]="settingsForm">
-    <div>
-      <div>
-        <div>
-          <h4>Settings</h4>
-        </div>
+    <div class="form-group row my-4">
+      <label class="col-4 col-form-label" for="idStaff">Staff</label>
+      <div class="col-8">
+        <input class="form-control" id="idStaff" formControlName="staff">
+      </div>
+    </div>
 
-        <div>
-          <div class="form-group form-group-xs row">
-            <label class="col-form-label col-form-label-sm col-xs-5" for="idStaff">Staff :</label>
-            <div class="col-xs-6">
-              <input class="form-control form-control-sm" type="text" id="idStaff" [formControl]="settingsForm.controls.staff" required>
-            </div>
-          </div>
+    <h6>Daily Hour Goals</h6>
 
-          <h6>Goals</h6>
-
-          <div *ngFor="let goal of settingsForm.goals; let i = index" class="form-group form-group-xs row" [class.has-danger]="settingsForm.controls[dayLabels[i]].errors">
-            <label class="col-form-label col-form-label-sm col-xs-5">{{ dayLabels[i] }}:</label>
-            <div class="col-xs-4">
-              <input class="form-control form-control-sm" type="text" [formControl]="settingsForm.controls[dayLabels[i]]" placeholder="h:mm">
-            </div>
-          </div>
-        </div>
+    <div class="form-group row"
+      formArrayName="goals" *ngFor="let goal of settingsForm.get('goals').controls; let i = index">
+      <label class="col-4 col-form-label" for="hours{{i}}">{{ dayLabels[i] }}</label>
+      <div class="col-8">
+        <input class="form-control text-right" id="hours{{i}}" [formControlName]="i" placeholder="h:mm">
       </div>
     </div>
   </form>
+
+  <div class="form-group row">
+    <div class="col-4 col-form-label">Total</div>
+    <div class="col-8 text-right">
+      <input class="form-control text-right" readonly value="{{ totalHours }}">
+    </div>
+  </div>
 </div>

@@ -34,7 +34,7 @@ export class FetchWeekAction implements Action {
   public payload: Date;
 
   // payload is the date of the Monday? of the week
-  constructor(payload: Date) {
+  constructor(payload: Date = new Date()) {
     this.payload = new Date(_isoDate(payload));
   }
 }

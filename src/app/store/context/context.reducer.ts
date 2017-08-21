@@ -29,6 +29,14 @@ export function reducer(state = initialState, action: contextActions.Actions): S
         )
       });
 
+    case contextActions.ACTION.UPDATE_SETTINGS:
+      return Object.assign({}, state, {
+        context: updateSettings(
+          state.context,
+          (<contextActions.UpdateSettingsAction>action).payload
+        )
+      });
+
     case contextActions.ACTION.HIDE_TIMELINE_HELP:
       return Object.assign({}, state, {
         context: Object.assign(
@@ -47,6 +55,17 @@ function updateExpected(context: Context, newTimes: TodayTimes): Context {
   const nowHM = context.now.leave;
   context = Object.assign(new Context(), context, {expected : newTimes});
   return updateNow(context, nowHM);
+}
+
+function updateSettings(context: Context, newSettings: Context): Context {
+  context = Object.assign(
+    new Context(),
+    context,
+    {
+      staff: newSettings.staff,
+      goals: newSettings.goals
+    });
+  return context;
 }
 
 function updateNow(context: Context, nowHM: HM): Context {

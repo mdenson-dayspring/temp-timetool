@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import { Context, DayInfo, HM } from '../../models';
 import * as fromRoot from '../../store';
 import * as contextActions from '../../store/context/context.actions';
+import { FetchWeekAction } from '../../store/timesheet/timesheet.actions';
 
 @Component({
   template: require('./now.page.html'),
@@ -26,16 +27,15 @@ export class NowPage implements OnInit {
     this.context$
       .subscribe(updated => {
         this.setHours(updated);
+        this.store.dispatch(new FetchWeekAction());
       });
-
   }
 
   hideTimelineHelp() {
     this.store.dispatch(new contextActions.HideTimelineHelpAction());
   }
-  
+
   gotoSettings() {
-    console.debug('gotoSettings');
     this.store.dispatch(go('/settings'));
   }
 

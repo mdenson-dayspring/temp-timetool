@@ -6,10 +6,14 @@ import {
   Validators
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Logger } from 'angular2-logger/core';
 import { Observable } from 'rxjs/Rx';
 
-import { DayOfWeek, Context } from '../../models';
+import { DayOfWeek, Context, HM } from '../../models';
 import * as fromRoot from '../../store';
+import { UpdateSettingsAction } from '../../store/context/context.actions';
+
+import * as dsvalidator from '../../form-validators';
 
 @Component({
   template: require('./settings.page.html'),
@@ -19,8 +23,10 @@ import * as fromRoot from '../../store';
 export class SettingsPage {
   private settingsForm: FormGroup;
   private dayLabels: string[];
+  private totalHours: string;
 
   constructor(
+    private $log: Logger,
     private store: Store<fromRoot.State>,
     fb: FormBuilder) {
     this.dayLabels = [];
@@ -39,15 +45,15 @@ export class SettingsPage {
         this.settingsForm = fb.group({
           'arrive': [context.expected.arrive, [
             Validators.required,
-            Validators.pattern('[0-9]+:[0-9][0-9]')
+            dsvalidator.isaTime
           ]],
           'lunch': [context.expected.lunch, [
             Validators.required,
-            Validators.pattern('[0-9]+:[0-9][0-9]')
+            dsvalidator.isaTime
           ]],
           'leave': [context.expected.leave, [
             Validators.required,
-            Validators.pattern('[0-9]+:[0-9][0-9]')
+            dsvalidator.isaTime
           ]],
           'staff': [context.staff, [
             Validators.required
@@ -57,13 +63,13 @@ export class SettingsPage {
           ])
         });
 
-        const goals = <FormArray>this.settingsForm.controls.logs;
-        // this.dayLabels.forEach((label, index) => {
-        //   goals.push([
-        //     context.goals[index],
-        //     Validators.pattern('[0-9]+:[0-9][0-9]')
-        //   settingsForm]);
-        // });
+        const goals = <FormArray>this.settingsForm.controls.goals;
+        this.dayLabels.forEach((label, index) => {
+          goals.push(fb.control(context.goals[index], dsvalidator.isaTime));
+        });
+        this.$log.debug(goals);
+
+        this.calcTotal(context.goals);
       });
 
     this.settingsForm.valueChanges
@@ -75,16 +81,17 @@ export class SettingsPage {
   }
 
   private save(form: any) {
-    // this.context.expected.arrive = form.arrive;
-    // this.context.expected.lunch = form.lunch;
-    // this.context.expected.leave = form.leave;
-    //
-    // this.context.staff = form.staff;
-    //
-    // for (let i = 0; i < 7; i++) {
-    //   this.context.goals[i] = form[this.dayLabels[i]];
-    // }
-    //
-    // this._appState.save(this.context);
+    const newContext = new Context();
+    newContext.staff = form.staff;
+    newContext.goals = form.goals;
+    this.calcTotal(newContext.goals);
+    this.store.dispatch(new UpdateSettingsAction(newContext));
+  }
+
+  private calcTotal(goals: string[]) {
+    let minutes = goals
+      .map(g => g ? (new HM(g)).minutes : 0)
+      .reduce((g, sum) => sum + g);
+    this.totalHours = (new HM(minutes)).toString();
   }
 }
