@@ -1,3 +1,7 @@
 <td>{{ content.name }}</td>
 <td class='hours'>{{ content.hours }}</td>
-<td class='diff' [class.low]="content.diffSign<0" [class.high]="content.diffSign>0">{{ content.diff }}</td>
+<td class='diff'>
+  <img *ngIf="content.diffSign<0" src="../../../../public/images/arrow_dr.png">
+  <img *ngIf="content.diffSign>0" src="../../../../public/images/arrow_ug.png">
+  {{ content.diff }}
+</td>

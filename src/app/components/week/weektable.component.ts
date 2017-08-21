@@ -4,7 +4,7 @@ import { DayInfo, HM } from '../../models';
 
 @Component({
   template: require('./weektable.component.html'),
-  styles: [require('./weektable.component.css')],
+  styles: [ require('./weektable.component.scss') ],
   selector: 'weektable'
 })
 export class WeekTableComponent {

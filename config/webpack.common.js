@@ -25,17 +25,13 @@ module.exports = {
         loader: 'html-loader'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
-      },
-      {
         test: /\.css$/,
         exclude: [
           /node_modules/,
           helpers.root('src', 'app')
         ],
         loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader', 
+          fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
@@ -51,7 +47,7 @@ module.exports = {
           helpers.root('src', 'app')
         ],
         loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader', 
+          fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
@@ -61,7 +57,7 @@ module.exports = {
               loader: 'sass-loader',
               options: {
                 outputStyle: 'expanded',
-                sourceMap: true 
+                sourceMap: true
               }
             }
           ]
@@ -94,7 +90,7 @@ module.exports = {
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       './src',
-      {} // a map of your routes 
+      {} // a map of your routes
     ),
 
     new webpack.ContextReplacementPlugin(

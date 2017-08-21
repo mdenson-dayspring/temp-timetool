@@ -7,7 +7,7 @@ import { Observable, Subscriber, Subscription } from 'rxjs/Rx';
 import * as fromRoot from '../store';
 import { DayInfo, HM } from '../models';
 
-const BASE_URL = 'http://malachi/timesheetPHP/staff/staff_json.php';
+const BASE_URL = '/timesheetPHP/staff/staff_json.php';
 
 @Injectable()
 export class TimesheetService {

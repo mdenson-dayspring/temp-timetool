@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
   <title>Timetool</title>
@@ -10,7 +10,12 @@
   <meta name="description" content="Timetracking helper">
 
   <!-- base url -->
-  <base href="/">
+  <base href="/" id="baseHref" />
+  <script>
+      (function() {
+          document.getElementById('baseHref').href = document.location;
+      })();
+  </script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
