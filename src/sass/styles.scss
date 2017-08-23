@@ -9,3 +9,28 @@
 .bg-primary {
   background-color: #a7c272 !important;
 }
+
+.size-width_x-small {
+  max-width: 320px;
+}
+.size-width_small {
+  max-width: 575px;
+}
+.size-width_medium {
+  max-width: 767px;
+}
+.size-width_large {
+  max-width: 991px;
+}
+.size-width_x-large {
+  max-width: 1199px;
+}
+
+.table {
+  .total-row {
+    td, th {
+      border-top: 1px solid #343a40;
+      font-weight: bold;
+    }
+  }
+}

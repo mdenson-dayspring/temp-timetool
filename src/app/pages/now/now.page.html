@@ -1,4 +1,4 @@
-<div class="px-2">
+<div class="container px-2">
   <timeline [now]="(context$ | async)?.now" [today]="(context$ | async)?.today"></timeline>
   <week-summary
     *ngIf="(context$ | async)?.staff"
@@ -12,7 +12,7 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideTimelineHelp()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <strong>What is that bar?</strong> The daily timeline above shows today's progress. 
+    <strong>What is that bar?</strong> The daily timeline above shows today's progress.
     The times above the bar are:
     <ol>
       <li>the time you arrived</li>
@@ -22,7 +22,7 @@
     <strong>Click those numbers to change.</strong>
   </div>
   <div class="alert alert-warning" role="alert" *ngIf="!(context$ | async)?.staff">
-    <strong>Get more help!</strong> Timetool can help more. To get your weekly data from Timesheet 
+    <strong>Get more help!</strong> Timetool can help more. To get your weekly data from Timesheet
     enter your user name on the <a class="alert-link" (click)="gotoSettings()">Settings</a> page.
   </div>
 </div>
