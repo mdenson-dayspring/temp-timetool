@@ -25,4 +25,17 @@
     <strong>Get more help!</strong> Timetool can help more. To get your weekly data from Timesheet
     enter your user name on the <a class="alert-link" (click)="gotoSettings()">Settings</a> page.
   </div>
+  <div class="alert alert-info" role="alert" *ngIf="(context$ | async)?.staff && !(context$ | async)?.hideWeekHelp">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideWeekHelp()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p><strong>What is the table telling me?</strong> The table has information from
+    Timesheet for previous days of the week and the goal hours for the up-coming days.
+    The total shows how many hours you will have worked this week based on Timesheet
+    and today if you meet your goals later in the week.</p>
+
+    <strong>The green row is today.</strong> If the label is the name of the day then the
+    hours come from Timesheet. Otherwise, you can click the row to switch between hours
+    calculated from your estimated leave time or right now.
+  </div>
 </div>

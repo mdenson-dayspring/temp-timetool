@@ -34,6 +34,9 @@ export class NowPage implements OnInit {
   hideTimelineHelp() {
     this.store.dispatch(new contextActions.HideTimelineHelpAction());
   }
+  hideWeekHelp() {
+    this.store.dispatch(new contextActions.HideWeekHelpAction());
+  }
 
   gotoSettings() {
     this.store.dispatch(go('/settings'));

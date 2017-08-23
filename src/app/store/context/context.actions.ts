@@ -8,7 +8,8 @@ export const ACTION = {
   TICK:  type('[Context] Tick'),
   UPDATE_EXPECTED:  type('[Context] Update Expected Times'),
   UPDATE_SETTINGS:  type('[Context] Update Settings'),
-  HIDE_TIMELINE_HELP:  type('[Context] Hide Timeline Help')
+  HIDE_TIMELINE_HELP:  type('[Context] Hide Timeline Help'),
+  HIDE_WEEK_HELP:  type('[Context] Hide Week Help')
 };
 
 export class LoadPageAction implements Action {
@@ -34,10 +35,14 @@ export class UpdateSettingsAction implements Action {
 export class HideTimelineHelpAction implements Action {
   type = ACTION.HIDE_TIMELINE_HELP;
 }
+export class HideWeekHelpAction implements Action {
+  type = ACTION.HIDE_WEEK_HELP;
+}
 
 export type Actions
   = LoadPageAction
   | TickAction
   | UpdateExpectedAction
   | UpdateSettingsAction
-  | HideTimelineHelpAction;
+  | HideTimelineHelpAction
+  | HideWeekHelpAction;

@@ -25,6 +25,7 @@ export class Context {
   goals: string[];
 
   hideTimelineHelp: boolean = false;
+  hideWeekHelp: boolean = false;
 
   constructor() {
     this.staff = '';
@@ -32,10 +33,10 @@ export class Context {
     this.goals = [
       '',
       '8:00',
-      '7:48',
-      '7:48',
-      '7:36',
-      '7:48',
+      '8:00',
+      '8:00',
+      '8:00',
+      '8:00',
       ''
     ];
   }

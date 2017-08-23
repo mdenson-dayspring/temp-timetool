@@ -45,6 +45,14 @@ export function reducer(state = initialState, action: contextActions.Actions): S
           {hideTimelineHelp: true }
         )
       });
+    case contextActions.ACTION.HIDE_WEEK_HELP:
+      return Object.assign({}, state, {
+        context: Object.assign(
+          new Context(),
+          state.context,
+          {hideWeekHelp: true }
+        )
+      });
 
     default:
       return state;
