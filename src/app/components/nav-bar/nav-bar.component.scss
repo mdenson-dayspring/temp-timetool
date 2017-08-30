@@ -4,11 +4,14 @@ a {
 
 .nav-pills {
   color: #004a00;
+  margin-right: 4px;
 }
 .nav-pills .nav-link.active, .show > .nav-pills .nav-link {
   background-color: green;
   color: white;
 }
 .nav-pills .nav-link {
-    border-radius: 0;
+    border-radius: 19px;
+    padding: 4px;
+    margin: 4px 0;
 }
