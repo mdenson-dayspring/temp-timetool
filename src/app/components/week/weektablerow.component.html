@@ -1,5 +1,6 @@
 <td>{{ content.name }}</td>
-<td class='hours'>{{ content.hours }}</td>
+<td class='goal px-2'>{{ content.goal }}</td>
+<td class='hours px-3'>{{ content.hours }}</td>
 <td class='diff'>
   <img *ngIf="content.diffSign<0" src="../../../../public/images/arrow_dr.png">
   <img *ngIf="content.diffSign>0" src="../../../../public/images/arrow_ug.png">

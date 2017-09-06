@@ -41,6 +41,7 @@ export class WeekTableComponent {
           return {
             name: day.name,
             dayOfWeek: day.dayOfWeek,
+            goal: day.goal,
             hours: day.getHours(printEstimate),
             diff: day.getDiff(printEstimate),
             diffSign: day.getDiffSign(printEstimate),
@@ -57,6 +58,7 @@ export class WeekTableComponent {
     dataList.push({
       name: 'Total',
       dayOfWeek: totalDI.dayOfWeek,
+      goal: totalDI.goal,
       hours: totalDI.getHours(false),
       diff: totalDI.getDiff(false),
       diffSign: totalDI.getDiffSign(false),

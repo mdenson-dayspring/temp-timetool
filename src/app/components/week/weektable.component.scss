@@ -1,8 +1,14 @@
-.hours {
-    width: 55px;
+.hours, .goal {
+    width: 4rem;
     text-align: right;
-    padding-right: 13px;
 }
+
+@media screen and (max-width: 359px) {
+  .goal {
+    display: none;
+  }
+}
+
 .diff {
     width: 4.5rem;
     text-align: right;
