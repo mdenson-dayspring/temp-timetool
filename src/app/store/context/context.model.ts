@@ -1,4 +1,4 @@
-import { HM, Today } from './index';
+import { HM, Today } from '../../models';
 
 export enum DayOfWeek {
   SUN = 0,

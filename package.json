@@ -1,10 +1,11 @@
 {
-  "name": "angular2-starter",
+  "name": "timetool",
   "version": "4.2.0",
-  "description": "Angular 4.x starter application.",
+  "description": "Angular 4.x timetool for consultants.",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 3000 --host 0.0.0.0",
-    "test": "karma start",
+    "test": "karma start --single-run",
+    "test:watch": "karma start",
     "lint": "tslint --type-check --project . 'src/**/*.ts'",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
@@ -45,9 +46,12 @@
     "html-webpack-plugin": "^2.28.0",
     "jasmine-core": "^2.4.1",
     "karma": "^1.4.0",
+    "karma-intl-shim": "^1.0.3",
     "karma-jasmine": "^1.1.0",
+    "karma-junit-reporter": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "^0.0.31",
     "karma-webpack": "^2.0.0",
     "ngrx-store-freeze": "^0.1.6",
     "ngrx-store-localstorage": "^0.1.5",

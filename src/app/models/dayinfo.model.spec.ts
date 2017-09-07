@@ -10,3 +10,10 @@ describe('DayInfo Model Class', () => {
         expect(di.getDiff()).toBeUndefined();
     });
 });
+
+describe('DayInfo interactions', () => {
+    it('Can construct with just the name', () => {
+        let di = new DayInfo(DayOfWeek.TUE);
+        expect(di.name).toBe('Tuesday');
+    });
+});

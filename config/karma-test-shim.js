@@ -12,6 +12,8 @@ require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 require('../src/app/app.module');
 
+require('intl/locale-data/jsonp/en.js');
+
 var appContext = require.context('../src', true, /\.spec\.ts/);
 
 appContext.keys().forEach(appContext);
