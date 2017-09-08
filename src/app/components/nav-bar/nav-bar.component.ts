@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Logger } from 'angular2-logger/core';
 import { Store } from '@ngrx/store';
 import { go } from '@ngrx/router-store';
@@ -12,10 +12,10 @@ import * as fromRoot from '../../store';
   template: require('./nav-bar.component.html'),
   styles: [require('./nav-bar.component.scss')]
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
   @Input() time: HM;
   private path: string;
-  private urlDefinitions: {key: string, url: string}[] = [
+  private urlDefinitions: { key: string, url: string }[] = [
     { key: 'now', url: '/now' },
     { key: 'end', url: '/eod' },
     { key: 'settings', url: '/settings' }
@@ -33,12 +33,17 @@ export class NavBarComponent {
       this.active[value.key] = false;
     });
 
-    store.select(fromRoot.getRouterPath).subscribe((path) => {
-      this.path = path;
-      this.urlDefinitions.forEach(value => {
-        this.active[value.key] = (path === value.url);
+    this.$log.debug(store);
+  }
+
+  ngOnInit() {
+    this.store.select(fromRoot.getRouterPath)
+      .subscribe((path) => {
+        this.path = path;
+        this.urlDefinitions.forEach(value => {
+          this.active[value.key] = (path === value.url);
+        });
       });
-    });
   }
 
   private go(urlName: string): void {

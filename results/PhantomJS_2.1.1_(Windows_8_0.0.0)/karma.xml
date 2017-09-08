@@ -1,53 +1,55 @@
 <?xml version="1.0"?>
-<testsuite name="PhantomJS 2.1.1 (Windows 8 0.0.0)" package="" timestamp="2017-09-07T00:06:24" id="0" hostname="MED5" tests="43" errors="0" failures="0" time="0.098">
+<testsuite name="PhantomJS 2.1.1 (Windows 8 0.0.0)" package="" timestamp="2017-09-08T00:39:32" id="0" hostname="MED5" tests="44" errors="0" failures="0" time="0.387">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
   </properties>
-  <testcase name="DayInfo Model Class Can construct with just the name" time="0.014" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).DayInfo Model Class"/>
-  <testcase name="DayInfo interactions Can construct with just the name" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).DayInfo interactions"/>
+  <testcase name="Nav Bar Component construct component" time="0.299" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Nav Bar Component"/>
+  <testcase name="DayInfo Model Class Can construct with just the name" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).DayInfo Model Class"/>
+  <testcase name="DayInfo interactions Can construct with just the name" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).DayInfo interactions"/>
   <testcase name="HourMinute Model Class Can construct from string with colon" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class Can construct from minutes" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class Can construct from minutes" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
   <testcase name="HourMinute Model Class Can construct from hour-minute" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class toString with default signs" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class toString with changed signs" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class edge cases in toString" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class add 2 HM values" time="0.012" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class toString with default signs" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class toString with changed signs" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class edge cases in toString" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class add 2 HM values" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
   <testcase name="HourMinute Model Class sub 2 HM values" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
   <testcase name="HourMinute Model Class equality test" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
-  <testcase name="HourMinute Model Class test HM.now()" time="0.002" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
+  <testcase name="HourMinute Model Class test HM.now()" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).HourMinute Model Class"/>
   <testcase name="Today Model Class No argument constructor" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
-  <testcase name="Today Model Class One argument constructor" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
-  <testcase name="Today Model Class Two argument constructor" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
-  <testcase name="Today Model Class Three argument constructor" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
-  <testcase name="Today Model Class Time Left" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
-  <testcase name="Mergable List Can construct from an array" time="0.011" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List"/>
+  <testcase name="Today Model Class One argument constructor" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
+  <testcase name="Today Model Class Two argument constructor" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
+  <testcase name="Today Model Class Three argument constructor" time="0.01" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
+  <testcase name="Today Model Class Time Left" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Today Model Class"/>
+  <testcase name="Mergable List Can construct from an array" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List"/>
   <testcase name="Mergable List Get Exception getting past end" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List"/>
   <testcase name="Mergable List Can do a simple merge of two lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List"/>
   <testcase name="Mergable List Can do a simple merge of two lists (one empty)" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List"/>
   <testcase name="Mergable List (Simple Linear Merge) Can do a linear merge of no lists" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Simple Linear Merge)"/>
-  <testcase name="Mergable List (Simple Linear Merge) Can do a linear merge of two lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Simple Linear Merge)"/>
-  <testcase name="Mergable List (Simple Linear Merge) Can do a linear merge of four lists" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Simple Linear Merge)"/>
-  <testcase name="Mergable List (Tournament Merge) Can do a merge of no lists" time="0.01" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
-  <testcase name="Mergable List (Tournament Merge) Can do a merge of two lists" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
-  <testcase name="Mergable List (Tournament Merge) Can do a merge of four lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
-  <testcase name="Mergable List (Tournament Merge) Can do a merge of three lists" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
+  <testcase name="Mergable List (Simple Linear Merge) Can do a linear merge of two lists" time="0.005" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Simple Linear Merge)"/>
+  <testcase name="Mergable List (Simple Linear Merge) Can do a linear merge of four lists" time="0.016" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Simple Linear Merge)"/>
+  <testcase name="Mergable List (Tournament Merge) Can do a merge of no lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
+  <testcase name="Mergable List (Tournament Merge) Can do a merge of two lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
+  <testcase name="Mergable List (Tournament Merge) Can do a merge of four lists" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
+  <testcase name="Mergable List (Tournament Merge) Can do a merge of three lists" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Mergable List (Tournament Merge)"/>
   <testcase name="RC-4 PRNG Generator Can construct from string" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
-  <testcase name="RC-4 PRNG Generator Can construct from bytearray" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
-  <testcase name="RC-4 PRNG Generator Test Vectors" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
-  <testcase name="RC-4 PRNG Generator Test Dice" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
-  <testcase name="Spritz PRNG Generator Can construct from string" time="0.01" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Spritz PRNG Generator"/>
+  <testcase name="RC-4 PRNG Generator Can construct from bytearray" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
+  <testcase name="RC-4 PRNG Generator Test Vectors" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
+  <testcase name="RC-4 PRNG Generator Test Dice" time="0.011" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).RC-4 PRNG Generator"/>
+  <testcase name="Spritz PRNG Generator Can construct from string" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Spritz PRNG Generator"/>
   <testcase name="Spritz PRNG Generator Can construct from bytearray" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Spritz PRNG Generator"/>
   <testcase name="Spritz PRNG Generator Test Vectors" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Spritz PRNG Generator"/>
   <testcase name="Spritz PRNG Generator Test Dice" time="0.002" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Spritz PRNG Generator"/>
   <testcase name="LCG PRNG Generator Can construct from seed" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
   <testcase name="LCG PRNG Generator Can construct without seed" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
-  <testcase name="LCG PRNG Generator Test Vectors" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
-  <testcase name="LCG PRNG Generator Test Dice" time="0.002" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
-  <testcase name="Plugable PRNG Can construct with Spritz" time="0.008" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
-  <testcase name="Plugable PRNG nextByte with and withour modulo" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
-  <testcase name="Plugable PRNG nextInt with and withour modulo" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
+  <testcase name="LCG PRNG Generator Test Vectors" time="0.003" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
+  <testcase name="LCG PRNG Generator Test Dice" time="0.01" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).LCG PRNG Generator"/>
+  <testcase name="Plugable PRNG Can construct with Spritz" time="0.001" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
+  <testcase name="Plugable PRNG nextByte with and withour modulo" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
+  <testcase name="Plugable PRNG nextInt with and withour modulo" time="0" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Plugable PRNG"/>
   <system-out>
-    <![CDATA[
+    <![CDATA[PhantomJS 2.1.1 (Windows 8 0.0.0) DEBUG: MockStore{}
+
 ]]>
   </system-out>
   <system-err/>
