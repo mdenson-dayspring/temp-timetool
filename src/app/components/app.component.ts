@@ -31,8 +31,8 @@ export class AppComponent {
     this.now = HM.Now();
     store.dispatch(new contextActions.LoadPageAction(this.now));
 
-    store.dispatch(new timesheetActions.ResetWeekAction(new Date()));
-    store.dispatch(new timesheetActions.FetchWeekAction(new Date()));
+    store.dispatch(new timesheetActions.ResetWeekAction());
+    store.dispatch(new timesheetActions.FetchWeekAction());
 
     Observable
       .interval(1000)

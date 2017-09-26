@@ -12,24 +12,28 @@ const BASE_URL = '/timesheetPHP/staff/staff_json.php';
 @Injectable()
 export class TimesheetService {
   private staff: string;
-  private contextSub: Subscription;
+  private weekDate: string;
+  private subs: Subscription[] = [];
 
   // Using Angular DI we use the HTTP service
   constructor(private $http: Http,
     private store: Store<fromRoot.State>,
     private $log: Logger) {
-    this.contextSub = store.select(fromRoot.getContext)
+    this.subs.push(store.select(fromRoot.getContext)
       .subscribe(context => {
         this.staff = context.staff;
-      });
+      }));
+    this.subs.push(store.select(fromRoot.getTimesheetState)
+      .subscribe(state => {
+        this.weekDate = this._isoDate(state.date);
+      }));
   }
 
-  fetchTimeData(today: Date, staff: string): Observable<DayInfo[]> {
+  fetchTimeData(): Observable<DayInfo[]> {
     return Observable.create((subscriber: Subscriber<DayInfo[]>) => {
-      const todaystr = this._isoDate(today);
-      this.$log.debug('[TimesheetService.fetchTimeData]', this.staff, todaystr);
+      this.$log.debug('[TimesheetService.fetchTimeData]', this.staff, this.weekDate);
       if (this.staff) {
-        let url = BASE_URL + '?staff=' + this.staff + '&today=' + todaystr;
+        let url = BASE_URL + '?staff=' + this.staff + '&today=' + this.weekDate;
         if (process.env.ENV !== 'production') {
           url = 'public/data/staff.json';
         }
@@ -50,7 +54,9 @@ export class TimesheetService {
   }
 
   ngOnDestroy() {
-    if (this.contextSub) { this.contextSub.unsubscribe(); }
+    this.subs.forEach(element => {
+      if (element) { element.unsubscribe(); }
+    });
   }
 
   private _isoDate(d: Date) {

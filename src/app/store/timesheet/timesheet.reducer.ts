@@ -1,10 +1,7 @@
 import * as actions from './timesheet.actions';
-import { DayInfo, DayOfWeek, HM } from '../../models';
+import { DayInfo, DayOfWeek, HM, TimesheetWeek } from '../../models';
 
-export interface State {
-  date: Date;
-  week: DayInfo[];
-}
+export type State = TimesheetWeek;
 
 const initialState: State = {
   date: undefined,

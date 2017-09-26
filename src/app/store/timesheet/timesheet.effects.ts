@@ -17,7 +17,7 @@ export class TimesheetEffects {
   fetchWeek$: Observable<Action> = this.actions$
     .ofType(timesheetActions.ACTION.FETCH_WEEK)
     .switchMap((action: timesheetActions.FetchWeekAction) => {
-      return this.$svc.fetchTimeData(action.payload, 'mdenson')
+      return this.$svc.fetchTimeData()
         .map(week => {
           return new timesheetActions.SetWeekAction(week);
         })

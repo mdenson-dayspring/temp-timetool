@@ -3,7 +3,7 @@ import { go } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
-import { Context, DayInfo, HM } from '../../models';
+import { Context, DayInfo, HM, TimesheetWeek } from '../../models';
 import * as fromRoot from '../../store';
 import * as contextActions from '../../store/context/context.actions';
 import { FetchWeekAction } from '../../store/timesheet/timesheet.actions';
@@ -14,13 +14,13 @@ import { FetchWeekAction } from '../../store/timesheet/timesheet.actions';
 })
 export class NowPage implements OnInit {
   context$: Observable<Context>;
-  weekData$: Observable<DayInfo[]>;
+  weekData$: Observable<TimesheetWeek>;
   eod: HM;
   now: HM;
 
   constructor(private store: Store<fromRoot.State>) {
     this.context$ = this.store.select(fromRoot.getContext);
-    this.weekData$ = this.store.select(fromRoot.getWeek);
+    this.weekData$ = this.store.select(fromRoot.getTimesheetState);
   }
 
   ngOnInit() {

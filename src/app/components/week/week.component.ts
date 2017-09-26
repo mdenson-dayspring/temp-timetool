@@ -16,6 +16,7 @@ export class WeekComponent implements OnChanges {
   todayDoW: number;
   week: DayInfo[];
 
+  private titleDate: string;
   private allowModeSwitch = false;
   private today: Date;
   private _showNow: boolean = false;
@@ -31,13 +32,14 @@ export class WeekComponent implements OnChanges {
   get todayHoursDisplay(): string {
     return this.todayHoursHM.toString();
   }
-
-  get todayDate(): string {
-    function pad(s: number) {
-      return (s < 10) ? '0' + s : s;
+  @Input('week')
+  set weekDate(val: Date) {
+    console.log('weekDate', val);
+    if (!val) {
+      this.titleDate = '';
+    } else {
+      this.titleDate = [val.getMonth() + 1, val.getDate(), val.getFullYear()].join('/');
     }
-    let d = this.today;
-    return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join('/');
   }
 
   constructor(private $log: Logger) {
