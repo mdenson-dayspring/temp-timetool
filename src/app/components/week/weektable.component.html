@@ -9,7 +9,7 @@
       *ngFor="let line of week;"
       [weektable-row]='line'
       [class.total-row]="line.totals"
-      [class.bg-primary]="line.today"
+      [class.today]="line.today"
       (click)="onClick(line.dayOfWeek)">
     </tr>
 </table>

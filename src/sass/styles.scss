@@ -3,11 +3,13 @@
 
 @import "slim-bootstrap";
 
+$bg-primary-color: #a7c272;
+
 .form-control-label {
   display: block;
 }
 .bg-primary {
-  background-color: #a7c272 !important;
+  background-color: $bg-primary-color !important;
 }
 
 .size-width_x-small {
@@ -26,7 +28,19 @@
   max-width: 1199px;
 }
 
+.incomplete {
+  .table {
+    .today {
+      cursor: pointer;
+    }
+
+  }
+}
 .table {
+  .today {
+    background-color: $bg-primary-color !important;
+  }
+
   .total-row {
     td, th {
       border-top: 1px solid #343a40;

@@ -3,5 +3,6 @@
   *ngIf="week"
   [dayOfWeek]="todayDoW"
   [content]="week"
+  [class.incomplete]="allowModeSwitch"
   (clicked)="onClick()">
 </weektable>
