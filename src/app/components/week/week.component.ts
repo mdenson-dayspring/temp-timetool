@@ -3,6 +3,7 @@ import { Logger } from 'angular2-logger/core';
 
 import { DayOfWeek, Context, DayInfo, HM } from '../../models';
 import { TimesheetService } from '../../services';
+import * as moment from 'moment';
 
 @Component({
   template: require('./week.component.html'),
@@ -17,6 +18,8 @@ export class WeekComponent implements OnChanges {
   week: DayInfo[];
 
   private titleDate: string;
+  private weekMoment: moment.Moment;
+
   private allowModeSwitch = false;
   private today: Date;
   private _showNow: boolean = false;
@@ -37,8 +40,10 @@ export class WeekComponent implements OnChanges {
     console.log('weekDate', val);
     if (!val) {
       this.titleDate = '';
+      this.weekMoment = undefined;
     } else {
       this.titleDate = [val.getMonth() + 1, val.getDate(), val.getFullYear()].join('/');
+      this.weekMoment = moment(val);
     }
   }
 

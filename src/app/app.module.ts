@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { InputTimeModule } from './components/input-time/input-time.module';
+import { InputDateModule } from './components/input-date/input-date.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
@@ -31,6 +32,7 @@ import { TimesheetEffects } from './store/timesheet/timesheet.effects';
     AppRoutingModule,
     HttpModule,
     InputTimeModule,
+    InputDateModule,
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),

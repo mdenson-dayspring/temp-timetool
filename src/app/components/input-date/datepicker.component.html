@@ -1,0 +1,35 @@
+<div class="ngx-datepicker-container" role="dialog">
+    <div class="ngx-datepicker-calendar-container" role="dialog">
+  <div class="topbar-container">
+    <svg (click)="backMonth()" xmlns:xlink="http://www.w3.org/1999/xlink" height="10px" version="1.1" viewBox="0 0 7 10" width="7px" xmlns="http://www.w3.org/2000/svg"> <g _ngcontent-c0="" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"> <g _ngcontent-c0="" fill="#CED0DA" transform="translate(-923.000000, -1882.000000)"> <g _ngcontent-c0="" transform="translate(80.000000, 1361.000000)"> <g _ngcontent-c0="" transform="translate(0.000000, 430.000000)"> <g _ngcontent-c0="" transform="translate(825.000000, 0.000000)"> <g _ngcontent-c0="" transform="translate(0.000000, 72.000000)"> <g _ngcontent-c0="" transform="translate(18.000000, 15.000000)"> <polygon _ngcontent-c0="" id="Back" points="6.015 4 0 9.013 6.015 14.025"></polygon> </g> </g> </g> </g> </g> </g> </g> </svg>
+    <span class="topbar-title">
+      {{ viewRefDate.format('MMMM YYYY') }}
+    </span>
+    <svg (click)="forwardMonth()" xmlns:xlink="http://www.w3.org/1999/xlink" height="10px" version="1.1" viewBox="0 0 6 10" width="7px" xmlns="http://www.w3.org/2000/svg"> <g _ngcontent-c0="" fill="none" fill-rule="evenodd" id="Source-Sans---UI-Elements-Kit" stroke="none" stroke-width="1"> <g _ngcontent-c0="" fill="#CED0DA" id="White-Layout" transform="translate(-1182.000000, -1882.000000)"> <g _ngcontent-c0="" id="Dropdowns-&amp;-Selector" transform="translate(80.000000, 1361.000000)"> <g _ngcontent-c0="" id="Dropdowns" transform="translate(0.000000, 430.000000)"> <g _ngcontent-c0="" id="Calendar" transform="translate(825.000000, 0.000000)"> <g _ngcontent-c0="" id="Top-Bar-Nav" transform="translate(0.000000, 72.000000)"> <g _ngcontent-c0="" transform="translate(18.000000, 15.000000)"> <polygon _ngcontent-c0="" id="Forward" points="265.015 4 259 9.013 265.015 14.025" transform="translate(262.007500, 9.012500) scale(-1, 1) translate(-262.007500, -9.012500) "></polygon> </g> </g> </g> </g> </g> </g> </g> </svg>
+  </div>
+  <div class="main-calendar-container">
+    <div class="main-calendar-day-names">
+      <span title="Sunday" class="day-name-unit">Sun</span>
+      <span title="Monday" class="day-name-unit">Mon</span>
+      <span title="Tuesday" class="day-name-unit">Tue</span>
+      <span title="Wednesday" class="day-name-unit">Wed</span>
+      <span title="Thursday" class="day-name-unit">Thu</span>
+      <span title="Friday" class="day-name-unit">Fri</span>
+      <span title="Saturday" class="day-name-unit">Sat</span>
+    </div>
+    <div class="main-calendar-days">
+      <span
+        *ngFor="let d of viewDays;"
+        class="day-unit"
+        [ngClass]="{ 'is-prev-month': d.month() < viewRefDate.month(),
+                     'is-next-month': d.month() > viewRefDate.month(),
+                     'is-today': d.isSame(today),
+                     'is-selected': d.isSame(start) }"
+        (click)="onClick(d)">
+        {{ d.date() }}
+      </span>
+    </div>
+  </div>
+</div>
+</div>
+

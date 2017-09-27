@@ -1,4 +1,5 @@
 <h3>Week of {{ titleDate }}</h3>
+<datepicker [start]="weekMoment"></datepicker>
 <weektable
   *ngIf="week"
   [dayOfWeek]="todayDoW"
