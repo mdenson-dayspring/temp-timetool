@@ -2,11 +2,12 @@
   <timeline [now]="(context$ | async)?.now" [today]="(context$ | async)?.today"></timeline>
   <week-summary
     *ngIf="(context$ | async)?.staff"
+    [context]="context$ | async"
     [actuals]="(weekData$ | async)?.week"
     [week]="(weekData$ | async)?.date"
-    [goals]="(context$ | async)?.goals"
     [nowHours]="now"
-    [todayHours]="eod">
+    [todayHours]="eod"
+    (dateSelected)="newDate($event)">
   </week-summary>
 
   <div class="alert alert-info" role="alert" *ngIf="!(context$ | async)?.hideTimelineHelp">

@@ -24,6 +24,8 @@ export class Context {
   expected: TodayTimes;
   goals: string[];
 
+  touchSupported: boolean = false;
+  hoverSupported: boolean = false;
   hideTimelineHelp: boolean = false;
   hideWeekHelp: boolean = false;
 

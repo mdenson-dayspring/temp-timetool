@@ -1,9 +1,20 @@
-<h3>Week of {{ titleDate }}</h3>
-<datepicker [start]="weekMoment"></datepicker>
+<span class="week-title"><strong>Week of {{ titleDate }}</strong>
+  <a title="Pick Week" (click)="toggleDatepicker()" [class.active]="showPicker">
+    <img src="../../../../public/images/icon-calendar.svg" alt="Pick Week">
+  </a></span>
+
+<div *ngIf="showPicker" class="datepicker">
+  <div [class.popup]="!context.touchSupported">
+    <datepicker
+      [start]="weekMoment"
+      (picked)="datePicked($event)">
+    </datepicker>
+  </div>
+</div>
 <weektable
   *ngIf="week"
   [dayOfWeek]="todayDoW"
   [content]="week"
   [class.incomplete]="allowModeSwitch"
-  (clicked)="onClick()">
+  (clicked)="todayRowClicked()">
 </weektable>

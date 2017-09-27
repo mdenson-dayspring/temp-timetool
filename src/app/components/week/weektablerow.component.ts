@@ -11,7 +11,5 @@ import { DayInfo, HM } from '../../models';
 export class WeekTableRowComponent {
     @Input('weektable-row') content: DayInfo;
 
-    constructor(private $log: Logger) {
-      this.$log.debug('[WeekTableRowComponent] constructor');
-    }
+    constructor(private $log: Logger) { }
 }

@@ -14,14 +14,11 @@ export class WeekTableComponent {
 
   @Input()
   set dayOfWeek(dow: number) {
-    this.$log.debug('[WeekTableComponent] dayOfWeek', dow);
     this._todayNdx = dow;
   }
 
   @Input()
   set content(c: DayInfo[]) {
-    this.$log.debug('[WeekTableComponent] content');
-
     let totalGoal: number = 0;
     let totalActual: number = 0;
     let dataList: any = c
@@ -68,9 +65,7 @@ export class WeekTableComponent {
     this.week = dataList;
   }
 
-  constructor(private $log: Logger) {
-    this.$log.debug('[WeekTableComponent] constructor');
-  }
+  constructor(private $log: Logger) { }
 
   onClick(dow: number) {
     if (dow === this._todayNdx) {

@@ -8,6 +8,8 @@ export const ACTION = {
   TICK:  type('[Context] Tick'),
   UPDATE_EXPECTED:  type('[Context] Update Expected Times'),
   UPDATE_SETTINGS:  type('[Context] Update Settings'),
+  SET_TOUCH_DEVICE:  type('[Context] Set the flag for device supports touch.'),
+  SET_HOVER_DEVICE:  type('[Context] Set the flag for device supports hover.'),
   HIDE_TIMELINE_HELP:  type('[Context] Hide Timeline Help'),
   HIDE_WEEK_HELP:  type('[Context] Hide Week Help')
 };
@@ -32,6 +34,13 @@ export class UpdateSettingsAction implements Action {
   constructor(public payload: Context) { }
 }
 
+export class SetTouchDeviceSupportAction implements Action {
+  type = ACTION.SET_TOUCH_DEVICE;
+}
+export class SetHoverDeviceSupportAction implements Action {
+  type = ACTION.SET_HOVER_DEVICE;
+}
+
 export class HideTimelineHelpAction implements Action {
   type = ACTION.HIDE_TIMELINE_HELP;
 }
@@ -44,5 +53,7 @@ export type Actions
   | TickAction
   | UpdateExpectedAction
   | UpdateSettingsAction
+  | SetTouchDeviceSupportAction
+  | SetHoverDeviceSupportAction
   | HideTimelineHelpAction
   | HideWeekHelpAction;

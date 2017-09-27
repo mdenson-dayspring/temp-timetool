@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Logger } from 'angular2-logger/core';
@@ -20,10 +20,25 @@ import '../../sass/styles.scss';
 export class AppComponent {
   now: HM;
 
+  private hoverTest: Function;
+  private touchTest: Function;
+
   constructor(
     @Inject(DOCUMENT) private document: any,
+    private renderer: Renderer2,
     private store: Store<fromRoot.State>,
     private $log: Logger) {
+
+    this.touchTest = this.renderer.listen('window', 'touchstart', (evt) => {
+      this.$log.log('Setting touch supported');
+      this.store.dispatch(new contextActions.SetTouchDeviceSupportAction());
+      this.touchTest();
+    });
+    this.hoverTest = this.renderer.listen('window', 'mouseover', (evt) => {
+      this.$log.log('Setting hover supported');
+      this.store.dispatch(new contextActions.SetHoverDeviceSupportAction());
+      this.hoverTest();
+    });
 
     this.document
       .getElementById('appFavicon')
@@ -49,4 +64,8 @@ export class AppComponent {
 
   }
 
+  ngOnDestroy() {
+    this.hoverTest();
+    this.touchTest();
+  }
 }

@@ -11,7 +11,7 @@ export class DayInfo {
 
   constructor(dayOfWeek?: DayOfWeek, goal?: (string | HM), actual?: (string | HM)) {
     this.dayOfWeek = dayOfWeek;
-    if (dayOfWeek) {
+    if (dayOfWeek !== undefined) {
       this.name =
         ['Sunday',
         'Monday',

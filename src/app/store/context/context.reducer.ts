@@ -37,6 +37,23 @@ export function reducer(state = initialState, action: contextActions.Actions): S
         )
       });
 
+    case contextActions.ACTION.SET_TOUCH_DEVICE:
+      return Object.assign({}, state, {
+        context: Object.assign(
+          new Context(),
+          state.context,
+          {touchSupported: true }
+        )
+      });
+    case contextActions.ACTION.SET_HOVER_DEVICE:
+      return Object.assign({}, state, {
+        context: Object.assign(
+          new Context(),
+          state.context,
+          {hoverSupported: true }
+        )
+      });
+
     case contextActions.ACTION.HIDE_TIMELINE_HELP:
       return Object.assign({}, state, {
         context: Object.assign(

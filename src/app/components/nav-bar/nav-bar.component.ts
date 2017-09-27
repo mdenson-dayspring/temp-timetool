@@ -32,8 +32,6 @@ export class NavBarComponent implements OnInit {
       this.urls[value.key] = value.url;
       this.active[value.key] = false;
     });
-
-    this.$log.debug(store);
   }
 
   ngOnInit() {

@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output
+} from '@angular/core';
 import { Logger } from 'angular2-logger/core';
 
 import { DayOfWeek, Context, DayInfo, HM } from '../../models';
@@ -7,28 +13,35 @@ import * as moment from 'moment';
 
 @Component({
   template: require('./week.component.html'),
+  styles: [ require('./week.component.scss') ],
   selector: 'week-summary'
 })
 export class WeekComponent implements OnChanges {
   @Input() mode = 'eod';
   @Input() nowHours: HM;
   @Input() actuals: DayInfo[];
-  @Input() goals: HM[];
+  @Output() dateSelected: EventEmitter<Date> = new EventEmitter();
   todayDoW: number;
   week: DayInfo[];
 
+  private context: Context;
+  private goals: HM[];
   private titleDate: string;
   private weekMoment: moment.Moment;
+  private showPicker: boolean = false;
 
   private allowModeSwitch = false;
-  private today: Date;
+  private today: moment.Moment;
   private _showNow: boolean = false;
   private todayHoursHM: HM;
 
-  @Input()
-  set todayHours(hours: HM) {
-    this.today = new Date();
-    this.todayDoW = this.today.getDay();
+  @Input('context') set _context(val: Context) {
+    this.context = val;
+    if (val) {
+      this.goals = val.goals.map(g => g === '' ? undefined : new HM(g));
+    }
+  }
+  @Input() set todayHours(hours: HM) {
     this.todayHoursHM = hours;
   }
 
@@ -37,22 +50,22 @@ export class WeekComponent implements OnChanges {
   }
   @Input('week')
   set weekDate(val: Date) {
-    console.log('weekDate', val);
     if (!val) {
       this.titleDate = '';
       this.weekMoment = undefined;
+      this.todayDoW = undefined;
     } else {
-      this.titleDate = [val.getMonth() + 1, val.getDate(), val.getFullYear()].join('/');
       this.weekMoment = moment(val);
+      this.titleDate = this.weekMoment.format('M/D/YYYY');
+      this.todayDoW = this.today.diff(this.weekMoment, 'days');
     }
   }
 
   constructor(private $log: Logger) {
-    this.today = new Date();
-    this.todayDoW = this.today.getDay();
+    this.today = moment();
   }
 
-  onClick() {
+  todayRowClicked() {
     if (this.allowModeSwitch) {
       this.mode = (this.mode === 'now' ? 'eod' : 'now');
       this.$log.debug('Mode Change: mode changed to "' + this.mode + '"');
@@ -63,14 +76,20 @@ export class WeekComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.$log.debug('[week.component] ngOnChanges');
     if (this.actuals && this.goals) {
       this.fillHours(this.actuals, this.goals);
     }
   }
 
+  private toggleDatepicker() {
+    this.showPicker = !this.showPicker;
+  }
+  private datePicked(val: moment.Moment) {
+    this.dateSelected.emit(val.toDate());
+    this.showPicker = false;
+  }
+
   private fillHours(weekActuals: DayInfo[], goals: HM[]) {
-    this.$log.debug('[week.component] fillHours');
     let week: DayInfo[] = [
       new DayInfo(DayOfWeek.SUN, goals[DayOfWeek.SUN]),
       new DayInfo(DayOfWeek.MON, goals[DayOfWeek.MON]),
@@ -85,7 +104,8 @@ export class WeekComponent implements OnChanges {
       week[actual.dayOfWeek].setActual(new HM(actual.actual));
     });
 
-    if (week[this.todayDoW].actual === undefined) {
+    this.allowModeSwitch = false;
+    if (week[this.todayDoW] && week[this.todayDoW].actual === undefined) {
       this.allowModeSwitch = true;
       this.prepToday(week[this.todayDoW]);
     }

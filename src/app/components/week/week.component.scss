@@ -1,0 +1,35 @@
+$bg-active: rgba(167, 194, 114, 0.44);
+
+.datepicker {
+  position: relative;
+  .popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+  }
+}
+
+.week-title {
+  font-size: 1.5rem;
+
+  a {
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+
+    img {
+      vertical-align: top;
+      margin-top: .3rem;
+      height: 1.7rem;
+      width: 1.7rem;
+    }
+
+    &.active, &:hover {
+      background-color: $bg-active;
+    }
+  }
+}
