@@ -1,5 +1,3 @@
-$bg-active: rgba(167, 194, 114, 0.44);
-
 .datepicker {
   position: relative;
   .popup {
@@ -29,7 +27,7 @@ $bg-active: rgba(167, 194, 114, 0.44);
     }
 
     &.active, &:hover {
-      background-color: $bg-active;
+      background-color: $today-color;
     }
   }
 }

@@ -25,7 +25,7 @@
   </div>
   <div class="alert alert-warning" role="alert" *ngIf="!(context$ | async)?.staff">
     <strong>Get more help!</strong> Timetool can help more. To get your weekly data from Timesheet
-    enter your user name on the <a class="alert-link" (click)="gotoSettings()">Settings</a> page.
+    enter your user name on the <a class="alert-link" style="cursor: pointer;" (click)="gotoSettings()">Settings</a> page.
   </div>
   <div class="alert alert-info" role="alert" *ngIf="(context$ | async)?.staff && !(context$ | async)?.hideWeekHelp">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideWeekHelp()">

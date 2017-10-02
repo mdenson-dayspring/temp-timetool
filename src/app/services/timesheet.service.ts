@@ -24,8 +24,10 @@ export class TimesheetService {
         this.staff = context.staff;
       }));
     this.subs.push(store.select(fromRoot.getTimesheetState)
-      .subscribe(state => {
-        this.weekDate = this._isoDate(state.date);
+      .map(state => state.date)
+      .filter(date => date !== undefined)
+      .subscribe(date => {
+        this.weekDate = this._isoDate(date);
       }));
   }
 

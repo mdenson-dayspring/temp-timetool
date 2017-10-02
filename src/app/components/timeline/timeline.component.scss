@@ -5,24 +5,24 @@ p {
 .timeline {
   width: 100%;
   .bg-onclock {
-    background-color: #28a745;
+    background-color: $selection-color;
   }
   .bg-lunch {
-    background-color: lightgray;
+    background-color: $gray-400;
   }
   .text-onclock {
-    color: #175e28;
+    color: darken($selection-color, 25%);
   }
   .text-lunch {
-    color: #020202;
+    color: $gray-900;
   }
   .text-over {
     color: red;
   }
 
   .progress {
-    background-color: rgba(0,0,0,.05);
-    border: 1px solid #c0c0c0;
+    background-color: $gray-200;
+    border: 1px solid $gray-400;
     border-radius: 4px;
     height: 20px;
 

@@ -57,7 +57,11 @@ module.exports = {
               loader: 'sass-loader',
               options: {
                 outputStyle: 'expanded',
-                sourceMap: true
+                sourceMap: true,
+                data: '@import "variables";',
+                includePaths: [
+                  helpers.root('src/sass')
+                ]
               }
             }
           ]
@@ -72,7 +76,20 @@ module.exports = {
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader!sass-loader'
+        loaders: [
+          {
+            loader: 'raw-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              data: '@import "variables";',
+              includePaths: [
+                helpers.root('src/sass')
+              ]
+            }
+          }
+        ]
       }
     ]
   },

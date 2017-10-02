@@ -1,13 +1,13 @@
-$white: #ffffff;
+$white: #fff !default;
 $background: $white;
 $border: #DFE3E9;
 $shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
 $radius: 4px;
 $text: #3D495C;
 $text-secondary: #A4A9B1;
-$color: #28a745;
-$today-color: #a7c272;
-$bg-active: rgba(167, 194, 114, 0.44);
+$selection-color: #007bff !default;
+$today-color: #dee2e6 !default;
+$hover-color: #dee2e6 !default;
 
 .ngx-datepicker-container {
   position: relative;
@@ -98,13 +98,13 @@ $bg-active: rgba(167, 194, 114, 0.44);
             color: $text-secondary;
           }
           &:hover {
-            background: $bg-active;
+            background: $hover-color;
           }
           &.is-today {
             border: 1px solid $today-color;
           }
           &.is-selected {
-            background: $color;
+            background:$selection-color;
             color: $white;
           }
         }
